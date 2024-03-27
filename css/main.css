@@ -41,15 +41,38 @@ body{
      --fondo4: rgb(122 14 9);
       --texto-o: rgb(15 0 0);
 }
+/* menu para pantallas pequeñas */
+.menu{
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color:var(--buttom);
+    color: var(--barra-lateral);
+    right: 15px;
+    top: 15px;
+    z-index: 100;
+}
+/* menu normal para pc */
 .barra-lateral{
-   
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: 250px;
     height: 100%;
     overflow: hidden;
     padding: 20px 15px;
     background-color: var(--fondo);
-    transition: width 0.5s ease;
     color: var(--letra-c);
+    transition:width 0.5s ease,background-color 0.3s ease,left 0.5s ease;
+    z-index: 50;
+    
 }
 .mini-barra-lateral{
 width: 80px;
@@ -105,6 +128,21 @@ font-size: 25px;
 
 
 /*------------------------------> Menu Navegador*/
+.barra-lateral .navegacion{
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.barra-lateral .navegacion::-webkit-scrollbar{
+    width: 5px;
+}
+.barra-lateral .navegacion::-webkit-scrollbar-thumb{
+    background-color: var(--letra-co);
+    border-radius: 5px;
+}
+.barra-lateral .navegacion::-webkit-scrollbar-thumb:hover{
+    background-color: var(--fondo);
+}
 .barra-lateral .navegacion li{
     list-style: none;
     display: flex;
@@ -117,7 +155,7 @@ font-size: 25px;
     align-items: center;
     text-decoration: none;
     border-radius: 10px;
-    background-color: var(--fondo);
+   
     color: var(--texto);
 }
 .barra-lateral .navegacion a:hover{
@@ -134,6 +172,7 @@ font-size: 25px;
     width: 100%;
     height: 1px;
     background-color: var(--fondo4);
+    margin-top: 15px;
 }  
 
 /*-------------------------> Modo Oscuro*/
@@ -142,6 +181,7 @@ font-size: 25px;
     border-radius: 10px;
     display: flex;
     justify-content: space-between;
+    
 }
 .barra-lateral .modo-oscuro .info{
     width: 150px;
@@ -170,15 +210,58 @@ font-size: 25px;
     align-items: center;
     width: 35px;
     height: 20px;
-    background-color: green;
+    background-color: var(--letra-co);
     border-radius: 50px;
 }
 .barra-lateral .modo-oscuro .circulo{
     position: absolute;
     width: 18px;
     height: 90%;
-    background-color: blue;
+    background-color:var(--texto-o);
     border-radius: 50%;
     left: 2px;
+    transition: left 0.5s ease;
+}
+.barra-lateral .modo-oscuro .circulo.prendido{
+    left: 15px;
+}
 
+main{
+    margin-left: 250px;
+    padding: 20px;
+    transition: margin-left 0.5s ease;
+}
+main.min-main{
+    margin-left: 80px;
+}
+/*------------------> Responsive*/
+@media (max-height: 660px){
+    .barra-lateral .n-pagina{
+        margin-bottom: 5px;
+    }
+    .barra-lateral .modo-oscuro{
+        margin-bottom: 3px;
+    }
+}
+@media (max-width: 600px){
+    .barra-lateral{
+        position: fixed;
+        left: -250px;
+    }
+    .max-barra-lateral{
+        left: 0;
+    }
+    .menu{
+        display: flex;
+    }
+    .menu ion-icon:nth-child(2){
+        display: none;
+    }
+    main{
+        margin-left: 0;
+    }
+    main.min-main{
+        margin-left: 0;
+    }
+    
 }

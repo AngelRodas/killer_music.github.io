@@ -23,7 +23,7 @@ body{
     --fondo: #be7951;
     --buttom: #af6643;
     --fondo2: #974e37;
-    --fondo3: #66322d;
+    --fondo3: #885550;
     --fondo4: #66322d;
      --texto-o: #582c2b; 
 }
@@ -312,7 +312,7 @@ main.min-main{
     height: 300px;
     margin-left: 20px;
     border-radius: 12px;
-    background-color: #e29e44;
+    background-color: var(--fondo3);
   }
   
   
@@ -419,7 +419,7 @@ main.min-main{
     .player__level::-webkit-slider-thumb {
       -webkit-appearance: none;
       border-radius: 100%;
-      background-color: zz#5c87fe;
+      background-color: #5c87fe;
       height: 18px;
       width: 18px;
       margin-top: -7px;
@@ -469,4 +469,23 @@ main.min-main{
       text-align: center;
     }
     
-    
+  /* Se modifica el tamaño de la imagen del artista */
+  .i-ar{
+    background-color: var(--fondo3);
+    width: 300px;
+    height: 150px;
+    border-radius: 10px;
+  }
+  .p-a {
+    margin-left: 10px;
+    border-radius: 100%;
+    margin-top: 10px;
+    width: 100px;
+}
+.n-ar{
+    margin-left: 150px;
+    margin-bottom: 50px;
+    margin-top: -110px;
+}
+
+

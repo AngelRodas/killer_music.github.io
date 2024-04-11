@@ -44,11 +44,6 @@ cloud.addEventListener("click", () => {
 document.addEventListener("DOMContentLoaded", function() {
     // Inicializa el Swiper con las opciones y el selector de clase correspondiente
     var swiper = new Swiper(".mySwiper", {
-        // Configura el modo de cambio automático
-        autoplay: {
-            delay: 5000, // Intervalo de cambio en milisegundos (en este caso, 5 segundos)
-            disableOnInteraction: false, // Permite la interacción del usuario sin detener el cambio automático
-        },
         // Resto de tus opciones de Swiper, como effect, grabCursor, etc.
         effect: "coverflow",
         grabCursor: true,

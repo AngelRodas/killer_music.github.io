@@ -37,3 +37,49 @@ cloud.addEventListener("click", () => {
         span.classList.toggle("oculto");
     });
 });
+
+
+// carrusel 
+// Espera a que el DOM esté completamente cargado
+document.addEventListener("DOMContentLoaded", function() {
+    // Inicializa el Swiper con las opciones y el selector de clase correspondiente
+    var swiper = new Swiper(".mySwiper", {
+        // Configura el modo de cambio automático
+        autoplay: {
+            delay: 5000, // Intervalo de cambio en milisegundos (en este caso, 5 segundos)
+            disableOnInteraction: false, // Permite la interacción del usuario sin detener el cambio automático
+        },
+        // Resto de tus opciones de Swiper, como effect, grabCursor, etc.
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: "auto",
+        loop: true,
+        coverflowEffect: {
+            depth: 500,
+            modifier: 1,
+            slidesShadows: true,
+            rotate: 0,
+            stretch: 0,
+        },
+    });
+});
+
+
+
+
+// Espera a que el DOM esté completamente cargado
+document.addEventListener("DOMContentLoaded", function() {
+    // Obtén todos los elementos con la clase 'fa-heart'
+    var heartIcons = document.querySelectorAll('.fa-heart');
+
+    // Itera sobre cada icono de corazón
+    heartIcons.forEach(function(heartIcon) {
+        // Agrega un evento de clic a cada icono de corazón
+        heartIcon.addEventListener('click', function() {
+            // Alternar la clase 'far' (corazón vacío) y 'fas' (corazón lleno) en el icono
+            this.classList.toggle('far');
+            this.classList.toggle('fas');
+        });
+    });
+});

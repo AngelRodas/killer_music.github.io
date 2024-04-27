@@ -1,14 +1,12 @@
-*
-{
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Oswald", sans-serif;
+    font-family: "Oswald", sans-serif; 
 }
 
 body
 {
-    background-image: url();
     background-color:var(--fondo);
     background-size: cover;
     background-repeat: no-repeat;

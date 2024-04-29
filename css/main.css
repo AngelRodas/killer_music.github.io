@@ -15,17 +15,17 @@ body{
 }
 /* colores para la pagina */
 :root{
-    --barra-lateral:#150909;
-    --texto1: #f8f3ee;
-    --texto:#efdfd2;
-    --letra-c: #e0c1a8;
-    --letra-co: #ce9a76;
-    --fondo: #be7951;
-    --buttom: #af6643;
-    --fondo2: #974e37;
-    --fondo3: #885550;
-    --fondo4: #66322d;
-     --texto-o: #582c2b; 
+  --barra-lateral:#150909;
+  --texto1:#ffffff;
+  --texto:#000000;
+  --letra-c: #F7F9F9 ;
+  --letra-co: #c1c8ca;
+  --fondo: #B3B6B7;
+  --buttom: #c7c2c2;
+  --fondo2: #000000;
+  --fondo3: #cec1bf;
+  --fondo4: #bcc5c5;
+   --texto-o: #7B7D7D; 
 }
 .dark-mode{
     
@@ -182,7 +182,7 @@ font-size: 25px;
 .barra-lateral .modo-oscuro{
     width: 100%;
     border-radius: 10px;
-    margin-bottom: 80px;
+    margin-bottom: 45px;
     display: flex;
     justify-content: space-between;
     
@@ -230,7 +230,40 @@ font-size: 25px;
 .barra-lateral .modo-oscuro .circulo.prendido{
     left: 15px;
 }
-
+/*-----------------------------> usuario*/
+.barra-lateral .usuario{
+  width: 100%;
+  display: flex;
+}
+.barra-lateral .usuario img{
+  width: 50px;
+  min-width: 50px;
+  border-radius: 10px;
+}
+.barra-lateral .usuario .info-usuario{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--texto);
+  overflow: hidden;
+}
+.barra-lateral .usuario .nombre-email{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-left: 5px;
+}
+.barra-lateral .usuario .nombre{
+  font-size: 15px;
+  font-weight: 600;
+}
+.barra-lateral .usuario .email{
+  font-size: 13px;
+}
+.barra-lateral .usuario ion-icon{
+  font-size: 20px;
+}
 main{
     margin-left: 250px;
     padding: 20px;

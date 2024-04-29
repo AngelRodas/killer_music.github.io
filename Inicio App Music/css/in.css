@@ -10,34 +10,47 @@
   list-style: none;
   transition: all .2s linear;
 }
+body{
+  background-color: var(--letra-c);
+}
 
 /* colores para la pagina */
 :root{
   --barra-lateral:#150909;
-  --texto1: #f8f3ee;
-  --texto:#efdfd2;
-  --letra-c: #e0c1a8;
-  --letra-co: #ce9a76;
-  --fondo: #be7951;
-  --buttom: #af6643;
-  --fondo2: #974e37;
-  --fondo3: #885550;
-  --fondo4: #66322d;
-   --texto-o: #582c2b; 
+  --texto1:#ffffff;
+  --texto:#000000;
+  --letra-c: #F7F9F9 ;
+  --letra-co: #c1c8ca;
+  --fondo: #B3B6B7;
+  --buttom: #c7c2c2;
+  --fondo2: #000000;
+  --fondo3: #cec1bf;
+  --fondo4: #bcc5c5;
+   --texto-o: #7B7D7D; 
 }
 .dark-mode{
-  
-   --barra-lateral: rgb(255 243 230);
-   --texto1: rgb(255 225 189);
-   --texto:rgb(255 193 126);
-   --letra-c: rgb(153, 86, 31);
-   --letra-co: rgb(255 108 0);
-   --fondo: rgb(0, 0, 0);
-   --buttom: rgb(222 49 0);
-   --fondo2: rgb(176 25 0);
-   --fondo3: rgb(145 16 2);
-   --fondo4: rgb(122 14 9);
-    --texto-o: rgb(15 0 0);
+    /* no descubri para que servia este color o donde se aplicaba------(criis)*/
+    --barra-lateral:#ffffff;
+    /* el color que se muestra al pasar el cursor a un boton en la barra lateral------(criis)*/
+    --texto1:#9004bb ;
+    /* color de las letras principales de la pagina------(criis)*/
+    --texto: #ffffff;
+    /* color de fondo de la pagina*------(criis)*/
+    --letra-c:#0b040e ;
+   /* color de fondo del boton para poner el modo claro denuevo------(criis)*/
+    --letra-co:#60008a;
+   /* color de fondo de la barra lateral------(criis)*/
+    --fondo:#241427;
+   /* color de fondo de los botones: agregar,entrar------(criis)*/
+    --buttom:#5a036b;
+    /* no descubri para que servia este color o donde se aplicaba------(criis)*/
+    --fondo2:#ffffff ;
+    /*no descubri para que servia este color o donde se aplicaba------(criis) */
+    --fondo3:#660f5a;
+    /* color de fondo de el contenedor de inciar sesion------(criis)*/
+    --fondo4:#3d124e;
+   /* color de la bolita para activar y desactivar modo oscuro------(criis)*/
+     --texto-o:#130022 ;
 }
 /* menu para pantallas pequeñas */
 .menu{
@@ -180,7 +193,7 @@ font-size: 25px;
 .barra-lateral .modo-oscuro{
   width: 100%;
   border-radius: 10px;
-  margin-bottom: 80px;
+  margin-bottom: 45px;
   display: flex;
   justify-content: space-between;
   
@@ -228,6 +241,40 @@ font-size: 25px;
 .barra-lateral .modo-oscuro .circulo.prendido{
   left: 15px;
 }
+/*-----------------------------> usuario*/
+.barra-lateral .usuario{
+  width: 100%;
+  display: flex;
+}
+.barra-lateral .usuario img{
+  width: 50px;
+  min-width: 50px;
+  border-radius: 10px;
+}
+.barra-lateral .usuario .info-usuario{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--texto);
+  overflow: hidden;
+}
+.barra-lateral .usuario .nombre-email{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-left: 5px;
+}
+.barra-lateral .usuario .nombre{
+  font-size: 15px;
+  font-weight: 600;
+}
+.barra-lateral .usuario .email{
+  font-size: 13px;
+}
+.barra-lateral .usuario ion-icon{
+  font-size: 20px;
+}
 
 main{
   margin-left: 250px;
@@ -239,7 +286,7 @@ main.min-main{
 }
 
 
-
+/* AQUI EMPIEZA EL CSS DEL LO QUE ES EL INICIO DEL REPRODUCTOR DE MUSICA////////////////////////////////////////////////////////////////*/
 html{
   font-size: 62.5%;
   overflow-x: hidden;
@@ -252,11 +299,11 @@ html::-webkit-scrollbar{
 }
 
 html::-webkit-scrollbar-track{
-  background: #fff;
+  background: var(--texto1);
 }
 
 html::-webkit-scrollbar-thumb{
-  background: var(--primary-color);
+  background: var(--barra-lateral);
 }
 
 section{
@@ -266,7 +313,7 @@ section{
 .heading{
   font-size: 4rem;
   margin: 4rem 0;
-  color: var(--primary-color);
+  color: var(--barra-lateral);
   text-align: center;
 }
 
@@ -291,7 +338,7 @@ section{
   top: 0;
   height: 100%;
   width: 0%;
-  background: #bd394c;
+  background-color: var(--fondo4);
   z-index: -1;
   transition: .3s linear;
 }
@@ -367,13 +414,13 @@ section{
 
 .about ul li{
   font-size: 1.7rem;
-  color: var(--main-color);
+  color: var(--barra-lateral);
   padding-top: 1.5rem;
 }
 
 .about ul li i{
   font-size: 2rem;
-  color: var(--primary-color);
+  color: var(--barra-lateral);
   padding-right: 1rem;
 }
 
@@ -395,7 +442,7 @@ section{
 /* artist /////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 
 .artist{
-  background: var(--fondo);
+  background: var(--fondo3);
 }
 
 .artist .box-container{
@@ -452,7 +499,7 @@ section{
 }
 
 .artist .box-container .box .content h5{
-  color: var(--primary-color);
+  color: var(--fondo);
   font-size: 1.7rem;
   margin-bottom: 1rem;
   text-align: center;
@@ -460,7 +507,7 @@ section{
 
 .artist .box-container .box .content h3{
   font-size: 2.5rem;
-  color: var(--black);
+  color: var(--barra-lateral);
   text-align: center;
 }
 
@@ -477,7 +524,7 @@ section{
 .shop .box-container .box{
   background: #fff;
   border-radius: .5rem;
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--barra-lateral);
   position: relative;
   overflow: hidden;
   text-align: center;
@@ -515,7 +562,7 @@ section{
 }
 
 .shop .box-container .box .image .share a:hover{
-  color: var(--primary-color);
+  color: black;
   background: #fff;
 }
 
@@ -527,13 +574,13 @@ section{
 
 .shop .box-container .box .content h3{
   font-size: 2rem;
-  color: var(--black);
+  color: black;
 }
 
 .shop .box-container .box .content h5{
   font-size: 1.7rem;
   line-height: 2;
-  color: #777;
+  color: var(--texto-o);
 }
 
 /* end ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
@@ -541,7 +588,7 @@ section{
 /* gallery //////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 .gallery{
-  background: #f0f4ff;
+  background-color: var(--fondo3);
 }
 
 .gallery .controls{
@@ -555,18 +602,18 @@ section{
 .gallery .controls .button{
   height: 4rem;
   width: 16rem;
-  background: #fff;
-  color: var(--primary-color);
+  background: var(--texto1);
+  color: var(--texto-o);
   font-size: 2rem;
   line-height: 4rem;
   cursor: pointer;
   margin: 1rem;
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--barra-lateral);
   text-align: center;
 }
 
 .gallery .controls .button.active{
-  background: var(--main-color);
+  background: var(--letra-c);
   color: #fff;
 }
 
@@ -582,7 +629,7 @@ section{
   height: 25rem;
   width: 35rem;
   overflow: hidden;
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--barra-lateral);
 }
 
 .gallery .box-container .image img{
@@ -606,7 +653,7 @@ section{
 }
 
 .blog .box-container .box{
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--barra-lateral);
 }
 
 .blog .box-container .box .image{
@@ -631,7 +678,7 @@ section{
 
 .blog .box-container .box .content h3{
   font-size: 2.2rem;
-  color: var(--black);
+  color: var(--barra-lateral);
 }
 
 .blog .box-container .box .content .icons{
@@ -640,21 +687,21 @@ section{
 
 .blog .box-container .box .content .icons a{
   font-size: 1.4rem;
-  color: #444;
+  color: var(--barra-lateral);
 }
 
 .blog .box-container .box .content .icons a:hover{
-  color: var(--primary-color);
+  color: var(--texto1);
 }
 
 .blog .box-container .box .content .icons a i{
-  color: var(--primary-color);
+  color: var(--letra-co);
   padding-right: .5rem;
 }
 
 .blog .box-container .box .content p{
   font-size: 1.4rem;
-  color: var(--black);
+  color: var(--barra-lateral);
   line-height: 2;
   padding: 1rem 0;
 }
@@ -713,7 +760,7 @@ section{
 /* subscribe /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 .subscribe{
-  background: #f0f4ff;
+  background: var(--fondo3);
 }
 
 .subscribe .row{
@@ -730,7 +777,7 @@ section{
 .subscribe .row .content p{
   font-size: 4rem;
   font-weight: 700;
-  color: var(--primary-color);
+  color: var(--barra-lateral);
 }
 
 .subscribe .row .inputBox{
@@ -743,9 +790,9 @@ section{
   border-radius: 5rem;
   font-size: 1.4rem;
   background: none;
-  color: var(--black);
+  color: var(--barra-lateral);
   text-transform: none;
-  border: .1rem solid var(--primary-color);
+  border: .1rem solid var(--fondo);
 }
 
 .subscribe .row .inputBox .btn{
@@ -758,7 +805,7 @@ section{
 /* footer //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 
 .footer{
-  background: #eee5e6;
+  background: var(--fondo);
   text-align: center;
 }
 
@@ -771,26 +818,26 @@ section{
   width: 5rem;
   line-height: 5rem;
   font-size: 2rem;
-  color: var(--primary-color);
-  border: .1rem solid var(--primary-color);
+  color: var(--barra-lateral);
+  border: .1rem solid var(--letra-c);
   margin: .3rem;
   border-radius: 50%;
 }
 
 .footer .share a:hover{
-  color: #fff;
-  background: var(--primary-color);
+  color: var(--texto1);
+  background: var(--fondo2);
 }
 
 .footer .credit{
   font-size: 2rem;
-  color: var(--black);
+  color: var(--barra-lateral);
   padding: 1.5rem;
   font-weight: lighter;
 }
 
 .footer .credit span{
-  color: var(--primary-color);
+  color: var(--barra-lateral);
 }
 
 /* end //////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
@@ -823,7 +870,7 @@ section{
     position: absolute;
     top: 110%; right: -110%;
     width: 30rem;
-    box-shadow: var(--box-shadow);
+    box-shadow: var(--barra-lateral);
     border-radius: .5rem;
     background: #fff;
   }

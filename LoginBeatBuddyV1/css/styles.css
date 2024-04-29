@@ -7,7 +7,7 @@
 
 body
 {
-    background-color:var(--fondo);
+    background-color:var(--letra-c);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -16,31 +16,43 @@ body
 /* colores para la pagina */
 :root{
     --barra-lateral:#150909;
-    --texto1: #f8f3ee;
-    --texto:#efdfd2;
-    --letra-c: #e0c1a8;
-    --letra-co: #ce9a76;
-    --fondo: #be7951;
-    --buttom: #af6643;
-    --fondo2: #974e37;
-    --fondo3: #885550;
-    --fondo4: #66322d;
-     --texto-o: #582c2b; 
+    --texto1:#ffffff;
+    --texto:#000000;
+    --letra-c: #F7F9F9 ;
+    --letra-co: #c1c8ca;
+    --fondo: #B3B6B7;
+    --buttom: #c7c2c2;
+    --fondo2: #000000;
+    --fondo3: #cec1bf;
+    --fondo4: #bcc5c5;
+     --texto-o: #7B7D7D; 
 }
 .dark-mode{
+    /* no descubri para que servia este color o donde se aplicaba------(criis)*/
+    --barra-lateral:#ffffff;
+    /* el color que se muestra al pasar el cursor a un boton en la barra lateral------(criis)*/
+    --texto1:#9004bb ;
+    /* color de las letras principales de la pagina------(criis)*/
+    --texto: #ffffff;
+    /* color de fondo de la pagina*------(criis)*/
+    --letra-c:#0b040e ;
+   /* color de fondo del boton para poner el modo claro denuevo------(criis)*/
+    --letra-co:#60008a;
+   /* color de fondo de la barra lateral------(criis)*/
+    --fondo:#241427;
+   /* color de fondo de los botones: agregar,entrar------(criis)*/
+    --buttom:#5a036b;
+    /* no descubri para que servia este color o donde se aplicaba------(criis)*/
+    --fondo2:#ff0000 ;
+    /*no descubri para que servia este color o donde se aplicaba------(criis) */
+    --fondo3:#ff0000;
+    /* color de fondo de el contenedor de inciar sesion------(criis)*/
+    --fondo4:#3d124e;
+   /* color de la bolita para activar y desactivar modo oscuro------(criis)*/
+     --texto-o:#130022 ;
     
-     --barra-lateral: rgb(255 243 230);
-     --texto1: rgb(255 225 189);
-     --texto:rgb(255 193 126);
-     --letra-c: rgb(153, 86, 31);
-     --letra-co: rgb(255 108 0);
-     --fondo: rgb(0, 0, 0);
-     --buttom: rgb(222 49 0);
-     --fondo2: rgb(176 25 0);
-     --fondo3: rgb(145 16 2);
-     --fondo4: rgb(122 14 9);
-      --texto-o: rgb(15 0 0);
 }
+
 
 /* menu para pantallas pequeñas */
 .menu{
@@ -183,7 +195,7 @@ font-size: 25px;
 .barra-lateral .modo-oscuro{
     width: 100%;
     border-radius: 10px;
-    margin-bottom: 80px;
+    margin-bottom: 45px;
     display: flex;
     justify-content: space-between;
     
@@ -231,7 +243,40 @@ font-size: 25px;
 .barra-lateral .modo-oscuro .circulo.prendido{
     left: 15px;
 }
-
+/*-----------------------------> usuario*/
+.barra-lateral .usuario{
+    width: 100%;
+    display: flex;
+  }
+  .barra-lateral .usuario img{
+    width: 50px;
+    min-width: 50px;
+    border-radius: 10px;
+  }
+  .barra-lateral .usuario .info-usuario{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--texto);
+    overflow: hidden;
+  }
+  .barra-lateral .usuario .nombre-email{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 5px;
+  }
+  .barra-lateral .usuario .nombre{
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .barra-lateral .usuario .email{
+    font-size: 13px;
+  }
+  .barra-lateral .usuario ion-icon{
+    font-size: 20px;
+  }
 
 
 main{

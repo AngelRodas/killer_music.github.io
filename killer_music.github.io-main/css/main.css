@@ -15,17 +15,17 @@ body{
 }
 /* colores para la pagina */
 :root{
-  --barra-lateral:#150909;
-  --texto1:#ffffff;
-  --texto:#000000;
-  --letra-c: #F7F9F9 ;
-  --letra-co: #c1c8ca;
-  --fondo: #B3B6B7;
-  --buttom: #c7c2c2;
-  --fondo2: #000000;
-  --fondo3: #cec1bf;
-  --fondo4: #bcc5c5;
-   --texto-o: #7B7D7D; 
+    --barra-lateral:#150909;
+    --texto1: #f8f3ee;
+    --texto:#efdfd2;
+    --letra-c: #e0c1a8;
+    --letra-co: #ce9a76;
+    --fondo: #be7951;
+    --buttom: #af6643;
+    --fondo2: #974e37;
+    --fondo3: #885550;
+    --fondo4: #66322d;
+     --texto-o: #582c2b; 
 }
 .dark-mode{
     
@@ -275,37 +275,7 @@ main.min-main{
 
 
 
-/*------------------> Responsive*/
-@media (max-height: 660px){
-    .barra-lateral .nombre-pagina{
-        margin-bottom: 5px;
-    }
-    .barra-lateral .modo-oscuro{
-        margin-bottom: 3px;
-    }
-}
-@media (max-width: 600px){
-    .barra-lateral{
-        position: fixed;
-        left: -250px;
-    }
-    .max-barra-lateral{
-        left: 0;
-    }
-    .menu{
-        display: flex;
-    }
-    .menu ion-icon:nth-child(2){
-        display: none;
-    }
-    main{
-        margin-left: 0;
-    }
-    main.min-main{
-        margin-left: 0;
-    }
-    
-}
+
 /* boton de busqueda */
 .container {
     display: flex;

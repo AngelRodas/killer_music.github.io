@@ -78,3 +78,9 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+
+
+function openEditar(event) {
+    event.preventDefault(); // Evita que el enlace siga su comportamiento por defecto
+    window.open(event.target.href, '_blank', 'toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=100,width=800,height=600');
+}

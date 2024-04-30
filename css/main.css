@@ -28,18 +28,28 @@ body{
    --texto-o: #7B7D7D; 
 }
 .dark-mode{
-    
-     --barra-lateral: rgb(255 243 230);
-     --texto1: rgb(255 225 189);
-     --texto:rgb(255 193 126);
-     --letra-c: rgb(153, 86, 31);
-     --letra-co: rgb(255 108 0);
-     --fondo: rgb(0, 0, 0);
-     --buttom: rgb(222 49 0);
-     --fondo2: rgb(176 25 0);
-     --fondo3: rgb(145 16 2);
-     --fondo4: rgb(122 14 9);
-      --texto-o: rgb(15 0 0);
+    /* no descubri para que servia este color o donde se aplicaba------(criis)*/
+    --barra-lateral:#ffffff;
+    /* el color que se muestra al pasar el cursor a un boton en la barra lateral------(criis)*/
+    --texto1:#70477c ;
+    /* color de las letras principales de la pagina------(criis)*/
+    --texto: #ffffff;
+    /* color de fondo de la pagina*------(criis)*/
+    --letra-c:#1e0922;
+   /* color de fondo del boton para poner el modo claro denuevo------(criis)*/
+    --letra-co:#b700ff;
+   /* color de fondo de la barra lateral------(criis)*/
+    --fondo:#300a38;
+   /* color de fondo de los botones: agregar,entrar------(criis)*/
+    --buttom:#5a036b;
+    /* no descubri para que servia este color o donde se aplicaba------(criis)*/
+    --fondo2:#ff00d4 ;
+    /*no descubri para que servia este color o donde se aplicaba------(criis) */
+    --fondo3:#7a0991;
+    /* color de fondo de el contenedor de inciar sesion------(criis)*/
+    --fondo4:#3d124e;
+   /* color de la bolita para activar y desactivar modo oscuro------(criis)*/
+     --texto-o:#130022 ;
 }
 /* menu para pantallas pequeñas */
 .menu{

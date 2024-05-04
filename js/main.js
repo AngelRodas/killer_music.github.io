@@ -84,3 +84,46 @@ function openEditar(event) {
     event.preventDefault(); // Evita que el enlace siga su comportamiento por defecto
     window.open(event.target.href, '_blank', 'toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=100,width=800,height=600');
 }
+
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get all elements with class "modal-trigger"
+var buttons = document.querySelectorAll(".modal-trigger");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// Loop through each button and attach click event listener
+buttons.forEach(function(button) {
+  button.addEventListener("click", function() {
+    modal.style.display = "block";
+  });
+});
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+// Event listener for Yes button
+document.getElementById("yesBtn").addEventListener("click", function() {
+  // Handle "Yes" action here
+  console.log("Yes clicked");
+  // You can put your logic to delete the song here
+  modal.style.display = "none"; // Close the modal
+});
+
+// Event listener for No button
+document.getElementById("noBtn").addEventListener("click", function() {
+  // Handle "No" action here
+  console.log("No clicked");
+  modal.style.display = "none"; // Close the modal
+});

@@ -24,10 +24,15 @@
           <ion-icon id="cloud" name="play-outline"style="color: white;"></ion-icon>
           <span style="color: white;">BeatBuddy</span>
         </div>
+        <a class="agregar" href="agregar.html">
         <button class="boton">
-            <ion-icon name="add-circle-outline"></ion-icon>   
+  
+          <ion-icon name="add-circle-outline"></ion-icon> 
+          
             <span>Agregar</span> 
+
         </button>
+      </a>
     </div>
         <nav class="navegacion">
             <ul>
@@ -56,9 +61,9 @@
                 </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="admin.html">
                         <ion-icon name="bookmark-outline"></ion-icon>
-                        <span>Important</span>
+                        <span>Modo Admin</span>
                     </a>
                 </li>
                 <li>
@@ -120,11 +125,22 @@
             <div class="swiper-slide">
                 <div class="player">
                     <div class="player__controls">
-                      <div class="player__btn player__btn--small" id="previous">
+                      <div class="player__btn player__btn--small" id="previous"  >
                         <i class="fas fa-arrow-left"></i>
                       </div>
+
+                       <!-- Modal -->
+                        <div id="myModal" class="modal">
+                          <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <p>¿Deseas eliminar la canción?</p>
+                            <button id="yesBtn">Sí</button>
+                            <button id="noBtn">No</button>
+                          </div>
+                         </div>
+
                       <h5 class="player__title">playing now</h5>
-                      <a class="player__btn player__btn--small" href="editar.html"; onclick="openEditar(event)">
+                      <a class="player__btn player__btn--small">
                         <i class="fas fa-bars"></i>
                       </a>
 
@@ -170,11 +186,11 @@
             <div class="swiper-slide">
                 <div class="player">
                     <div class="player__controls">
-                      <div class="player__btn player__btn--small" id="previous">
+                      <div class="player__btn player__btn--small modal-trigger" id="previous" >
                         <i class="fas fa-arrow-left"></i>
                       </div>
                       <h5 class="player__title">playing now</h5>
-                      <a class="player__btn player__btn--small" href="editar.html"; onclick="openEditar(event)">
+                      <a class="player__btn player__btn--small">
                         <i class="fas fa-bars"></i>
                       </a>                      
                       <div class="player__menu hide" id="menu">
@@ -218,11 +234,11 @@
             <div class="swiper-slide">
                 <div class="player">
                     <div class="player__controls">
-                      <div class="player__btn player__btn--small" id="previous">
+                      <div class="player__btn player__btn--small modal-trigger" id="previous" >
                         <i class="fas fa-arrow-left"></i>
                       </div>
                       <h5 class="player__title">playing now</h5>
-                      <a class="player__btn player__btn--small" href="editar.html"; onclick="openEditar(event)">
+                      <a class="player__btn player__btn--small">
                         <i class="fas fa-bars"></i>
                       </a>
                       
@@ -268,11 +284,11 @@
             <div class="swiper-slide">
                 <div class="player">
                     <div class="player__controls">
-                      <div class="player__btn player__btn--small" id="previous">
+                      <div class="player__btn player__btn--small modal-trigger" id="previous" >
                         <i class="fas fa-arrow-left"></i>
                       </div>
                       <h5 class="player__title">playing tilin</h5>
-                      <a class="player__btn player__btn--small" href="editar.html"; onclick="openEditar(event)">
+                      <a class="player__btn player__btn--small">
                         <i class="fas fa-bars"></i>
                       </a>
                       <div class="player__menu hide" id="menu">
@@ -316,11 +332,11 @@
             <div class="swiper-slide">
                 <div class="player">
                     <div class="player__controls">
-                      <div class="player__btn player__btn--small" id="previous">
+                      <div class="player__btn player__btn--small modal-trigger" id="previous" >
                         <i class="fas fa-arrow-left"></i>
                       </div>
                       <h5 class="player__title">playing now</h5>
-                      <a class="player__btn player__btn--small" href="editar.html"; onclick="openEditar(event)">
+                      <a class="player__btn player__btn--small">
                         <i class="fas fa-bars"></i>
                       </a>
                       <div class="player__menu hide" id="menu">
@@ -364,11 +380,11 @@
             <div class="swiper-slide">
                 <div class="player">
                     <div class="player__controls">
-                      <div class="player__btn player__btn--small" id="previous">
+                      <div class="player__btn player__btn--small modal-trigger" id="previous" >
                         <i class="fas fa-arrow-left"></i>
                       </div>
                       <h5 class="player__title">playing now</h5>
-                      <a class="player__btn player__btn--small" href="editar.html"; onclick="openEditar(event)">
+                      <a class="player__btn player__btn--small">
                         <i class="fas fa-bars"></i>
                       </a>
                       <div class="player__menu hide" id="menu">
@@ -413,11 +429,11 @@
             <div class="swiper-slide">
                 <div class="player">
                     <div class="player__controls">
-                      <div class="player__btn player__btn--small" id="previous">
+                      <div class="player__btn player__btn--small modal-trigger" id="previous" >
                         <i class="fas fa-arrow-left"></i>
                       </div>
                       <h5 class="player__title">playing now</h5>
-                      <a class="player__btn player__btn--small" href="editar.html"; onclick="openEditar(event)">
+                      <a class="player__btn player__btn--small">
                         <i class="fas fa-bars"></i>
                       </a>
                       <div class="player__menu hide" id="menu">
@@ -473,11 +489,11 @@
             <div class="swiper-slide">
                 <div class="player">
                     <div class="player__controls">
-                      <div class="player__btn player__btn--small" id="previous">
+                      <div class="player__btn player__btn--small modal-trigger" id="previous" >
                         <i class="fas fa-arrow-left"></i>
                       </div>
                       <h5 class="player__title">playing now</h5>
-                      <a class="player__btn player__btn--small" href="editar.html"; onclick="openEditar(event)">
+                      <a class="player__btn player__btn--small">
                         <i class="fas fa-bars"></i>
                       </a>
                       <div class="player__menu hide" id="menu">
@@ -521,11 +537,11 @@
             <div class="swiper-slide">
                 <div class="player">
                     <div class="player__controls">
-                      <div class="player__btn player__btn--small" id="previous">
+                      <div class="player__btn player__btn--small modal-trigger" id="previous" >
                         <i class="fas fa-arrow-left"></i>
                       </div>
                       <h5 class="player__title">playing now</h5>
-                      <a class="player__btn player__btn--small" href="editar.html"; onclick="openEditar(event)">
+                      <a class="player__btn player__btn--small">
                         <i class="fas fa-bars"></i>
                       </a>
                       <div class="player__menu hide" id="menu">
@@ -569,11 +585,11 @@
             <div class="swiper-slide">
                 <div class="player">
                     <div class="player__controls">
-                      <div class="player__btn player__btn--small" id="previous">
+                      <div class="player__btn player__btn--small modal-trigger" id="previous" >
                         <i class="fas fa-arrow-left"></i>
                       </div>
                       <h5 class="player__title">playing now</h5>
-                      <a class="player__btn player__btn--small" href="editar.html"; onclick="openEditar(event)">
+                      <a class="player__btn player__btn--small">
                         <i class="fas fa-bars"></i>
                       </a>
                       <div class="player__menu hide" id="menu">
@@ -618,11 +634,11 @@
             <div class="swiper-slide">
                 <div class="player">
                     <div class="player__controls">
-                      <div class="player__btn player__btn--small" id="previous">
+                      <div class="player__btn player__btn--small modal-trigger" id="previous" >
                         <i class="fas fa-arrow-left"></i>
                       </div>
                       <h5 class="player__title">playing now</h5>
-                      <a class="player__btn player__btn--small" href="editar.html"; onclick="openEditar(event)">
+                      <a class="player__btn player__btn--small">
                         <i class="fas fa-bars"></i>
                       </a>
                       <div class="player__menu hide" id="menu">
@@ -666,11 +682,11 @@
             <div class="swiper-slide">
                 <div class="player">
                     <div class="player__controls">
-                      <div class="player__btn player__btn--small" id="previous">
+                      <div class="player__btn player__btn--small modal-trigger" id="previous" >
                         <i class="fas fa-arrow-left"></i>
                       </div>
                       <h5 class="player__title">playing now</h5>
-                      <a class="player__btn player__btn--small" href="editar.html"; onclick="openEditar(event)">
+                      <a class="player__btn player__btn--small">
                         <i class="fas fa-bars"></i>
                       </a>
                       <div class="player__menu hide" id="menu">
@@ -714,11 +730,11 @@
             <div class="swiper-slide">
                 <div class="player">
                     <div class="player__controls">
-                      <div class="player__btn player__btn--small" id="previous">
+                      <div class="player__btn player__btn--small modal-trigger" id="previous" >
                         <i class="fas fa-arrow-left"></i>
                       </div>
                       <h5 class="player__title">playing now</h5>
-                      <a class="player__btn player__btn--small" href="editar.html"; onclick="openEditar(event)">
+                      <a class="player__btn player__btn--small">
                         <i class="fas fa-bars"></i>
                       </a>
                       <div class="player__menu hide" id="menu">
@@ -763,11 +779,11 @@
             <div class="swiper-slide">
                 <div class="player">
                     <div class="player__controls">
-                      <div class="player__btn player__btn--small" id="previous">
+                      <div class="player__btn player__btn--small modal-trigger" id="previous" >
                         <i class="fas fa-arrow-left"></i>
                       </div>
                       <h5 class="player__title">playing now</h5>
-                      <a class="player__btn player__btn--small" href="editar.html"; onclick="openEditar(event)">
+                      <a class="player__btn player__btn--small">
                         <i class="fas fa-bars"></i>
                       </a>
                       <div class="player__menu hide" id="menu">

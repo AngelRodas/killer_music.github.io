@@ -16,16 +16,16 @@ body
 /* colores para la pagina */
 :root{
     --barra-lateral:#150909;
-    --texto1:#ffffff;
-    --texto:#000000;
-    --letra-c: #F7F9F9 ;
-    --letra-co: #c1c8ca;
-    --fondo: #B3B6B7;
-    --buttom: #c7c2c2;
-    --fondo2: #000000;
-    --fondo3: #cec1bf;
-    --fondo4: #bcc5c5;
-     --texto-o: #7B7D7D; 
+    --texto1: #f8f3ee;
+    --texto:#efdfd2;
+    --letra-c: #e0c1a8;
+    --letra-co: #ce9a76;
+    --fondo: #be7951;
+    --buttom: #af6643;
+    --fondo2: #974e37;
+    --fondo3: #885550;
+    --fondo4: #66322d;
+     --texto-o: #582c2b; 
 }
 .dark-mode{
     /* no descubri para que servia este color o donde se aplicaba------(criis)*/

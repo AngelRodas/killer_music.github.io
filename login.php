@@ -13,7 +13,7 @@
          rel="stylesheet"
          href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
          />
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="includes/css/styles.css">
     <title>BeatBoddy</title>
     <link rel="icon" href="img/vectorLogoEpico21.svg">
 </head>

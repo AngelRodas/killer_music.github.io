@@ -13,7 +13,7 @@ require_once "includes/header.php";
          rel="stylesheet"
          href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
          />
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="includes/css/main.css">
     <title>BeatBuddy</title>
 </head>
 <body>

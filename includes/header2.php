@@ -52,7 +52,7 @@
                 <li>
                   <a href="../index.php">
                     <ion-icon name="disc-outline"></ion-icon>
-                    <span>Discos</span>
+                    <span> Mis Discos</span>
                 </a>
                 </li>
                 <li>

@@ -32,7 +32,7 @@
         <nav class="navegacion">
             <ul>
                 <li>
-                    <a href="./Inicio App Music/ini.php">
+                    <a href="ini.php">
                         <ion-icon name="home-outline"></ion-icon>
                         <span>Inicio</span>
                     </a>
@@ -52,7 +52,7 @@
                 <li>
                   <a href="index.php">
                     <ion-icon name="disc-outline"></ion-icon>
-                    <span>Discos</span>
+                    <span> Mis Discos</span>
                 </a>
                 </li>
                 <li>
@@ -70,7 +70,7 @@
                 <li>
                     <a href="#">
                         <ion-icon name="trash-outline"></ion-icon>
-                        <span>eliminar</span>
+                        <span>Eliminar</span>
                     </a>
                 </li>
             </ul>

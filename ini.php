@@ -1,5 +1,5 @@
 <?php 
-require_once "../includes/header2.php";
+require_once "includes/header.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +21,7 @@ require_once "../includes/header2.php";
          rel="stylesheet"
          href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
          />
-    <link rel="stylesheet" href="css/in.css">
+    <link rel="stylesheet" href="includes/css/in.css">
 </head>
 <body>
 <main>
@@ -500,7 +500,7 @@ require_once "../includes/header2.php";
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- magnific popup js cdn link  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
-    <script src="ini/scrips.js"></script>
+    <script src="includes/js/scrips.js"></script>
     <script  type = "module"  src = "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" > </script> 
     <script  nomodule  src = "https://unpkg .com/ionicons@7.1.0/dist/ionicons/ionicons.js" > </script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>

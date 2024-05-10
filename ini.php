@@ -501,10 +501,9 @@ require_once "includes/header.php";
     <!-- magnific popup js cdn link  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
     <script src="includes/js/scrips.js"></script>
-    <script  type = "module"  src = "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" > </script> 
-    <script  nomodule  src = "https://unpkg .com/ionicons@7.1.0/dist/ionicons/ionicons.js" > </script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-    <script src="../js/main.js"></script>
+<?php
+require_once "includes/footer.php";
+?>    
     
 </body>
 </html>

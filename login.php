@@ -55,7 +55,10 @@
 
     </div>
     <script src="includes/js/lo.js"></script>
-    
+
 </main>
+<?php 
+require_once "includes/footer.php";
+?>
 </body>
 </html>

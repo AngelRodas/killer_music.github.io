@@ -56,7 +56,7 @@
                 </a>
                 </li>
                 <li>
-                    <a href="admin.php">
+                    <a href="">
                         <ion-icon name="bookmark-outline"></ion-icon>
                         <span>Modo Admin</span>
                     </a>
@@ -105,14 +105,9 @@
     </div>
 </div>
 <main>
-    <div class="container">
-		<input type="text" placeholder="Buscar">
-		<div class="btn">
-			<ion-icon name="search-outline"></ion-icon>
-		</div>
-	</div>
+    
 <script  type = "module"  src = "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" > </script> 
-    <script  nomodule  src = "https://unpkg .com/ionicons@7.1.0/dist/ionicons/ionicons.js" > </script>
+    <script  nomodule  src = "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js" > </script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script src="js/main.js"></script>
 </body>

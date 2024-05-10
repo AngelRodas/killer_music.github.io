@@ -1,3 +1,6 @@
+<?php
+require_once "includes/header.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -86,6 +89,7 @@
             <div class="text-center">
                 <button type="submit" class="btn btn-primary">Agregar</button>
             </div>
+            
         </form>
 
     </div>

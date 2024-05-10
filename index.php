@@ -17,6 +17,12 @@ require_once "includes/header.php";
     <title>BeatBuddy</title>
 </head>
 <body>
+<div class="container">
+		<input type="text" placeholder="Buscar">
+		<div class="btn">
+			<ion-icon name="search-outline"></ion-icon>
+		</div>
+	</div>
     <div class="i-ar">
         <img class="p-a" src="https://i.scdn.co/image/ab6761610000e5ebdd3a6dced08066fb6f320eaa" alt="">
         <h1 class="n-ar">Jose Madero</h1>

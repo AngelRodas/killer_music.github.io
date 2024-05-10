@@ -1,3 +1,6 @@
+<?php 
+require_once "../includes/header2.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,100 +24,6 @@
     <link rel="stylesheet" href="css/in.css">
 </head>
 <body>
-    
-
-    <div class="menu">
-        <ion-icon name="play-outline"></ion-icon>
-        <ion-icon name="pause-outline"></ion-icon>
-    </div>
-    <div class="barra-lateral ">
-        <div>
-        <div class="n-pagina">
-          <ion-icon id="cloud" name="play-outline"></ion-icon>
-          <span>BeatBuddy</span>
-        </div>
-        <button class="boton">
-            <ion-icon name="add-circle-outline"></ion-icon>   
-            <span>Agregar</span> 
-        </button>
-    </div>
-        <nav class="navegacion">
-            <ul>
-                <li>
-                    <a href="#">
-                        <ion-icon name="home-outline"></ion-icon>
-                        <span>Inicio</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                       <ion-icon name="heart-outline"></ion-icon>
-                        <span>Favoritos</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="../LoginBeatBuddyV1/login.html">
-                        <ion-icon name="person-outline"></ion-icon>
-                        <span>Iniciar sesión</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="../index.html">
-                        <ion-icon name="disc-outline"></ion-icon>
-                        <span>Discos</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <ion-icon name="bookmark-outline"></ion-icon>
-                        <span>Important</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <ion-icon name="alert-circle-outline"></ion-icon>
-                        <span>Spam</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <ion-icon name="trash-outline"></ion-icon>
-                        <span>eliminar</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-<div>
-        <div class="linea"></div>
-
-        <div class="modo-oscuro">
-            <div class="info">
-                <ion-icon name="moon-outline"></ion-icon>
-                <span>Modo oscuro</span>
-            </div>
-            <div class="switch">
-                <div class="base">
-                    <div class="circulo">
-                        
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </div>
-    <div class="usuario"><!--imagen de sesion -->
-        <img src="../img/imagen sesion.jpg" alt="">
-        <div class="info-usuario">
-          <div class="nombre-email">
-            <span class="nombre">Pikachu</span>
-            <span class="email">Pikachu@gmail.com</span>
-          </div>
-          <ion-icon name="ellipsis-vertical-outline"></ion-icon>
-        </div>
-      </div>
-    </div>
-</div>
-
-    <!-- end -->
 <main>
     <!-- home -->
 

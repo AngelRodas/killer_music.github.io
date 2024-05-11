@@ -156,6 +156,7 @@ font-size: 25px;
 .barra-lateral .navegacion::-webkit-scrollbar-thumb:hover{
     background-color: var(--fondo);
 }
+
 .barra-lateral .navegacion li{
     list-style: none;
     display: flex;

@@ -31,7 +31,7 @@ require_once "includes/header.php";
 
         <div class="content">
             <h3>Consigue Canciones<br> Nuevas</h3>
-            <a href="#" class="btn">mostrar mas</a>
+            <a href="#" class="btn">Mostrar más</a>
         </div>
 
     </section>

@@ -1,3 +1,9 @@
+<?php
+    include_once("conexion.php");
+    Cconexion::ConexionDB();
+    session_start();
+    setlocale(LC_MONETARY,'es_gt');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,6 +25,16 @@
           <ion-icon id="cloud" name="play-outline"style="color: white;"></ion-icon>
           <span style="color: white;">BeatBuddy</span>
         </div>
+    <?php 
+        $pedrito = 0;
+        if ($pedrito == 1){
+        $sql = "SELECT EsAdmin FROM Usuario where EsAdmin = 1"; 
+        $result = $conn -> query($sql);
+        if ($result -> num_rows > 0) {
+
+        }
+        }
+    ?>
         <a class="agregar" href="agregar.php">
         <button class="boton">
   

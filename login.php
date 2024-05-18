@@ -1,5 +1,54 @@
 <?php
     require_once "includes/header.php"; 
+    include_once("conexion.php");
+    $conn = Cconexion::ConexionDB();
+
+    if(isset($_POST['registrar'])){
+        $nombre = $_POST['nombre'];
+        $correo = $_POST['correo'];
+        $usuario = $_POST['usuario'];
+        $contraseña = $_POST['contrasena'];
+        $apellido = $_POST['Apellido'];
+
+        if(strlen($nombre)>0 && strlen($apellido)>0 && strlen($correo)>0 && strlen($usuario)>1 && strlen($contraseña)>1){
+            
+            $options = array( PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY, PDO::SQLSRV_ATTR_QUERY_TIMEOUT => 1);
+            $insertUsuarioNuevo = $conn->prepare("INSERT INTO Usuario (UserName, email, Nombre, Apellido, Password) values (?,?,?,?,?)",$options);
+            
+            //$insertUsuarioNuevo->bind_param("sssss", $usuario, $correo, $nombre, $apellido, $contraseña);
+            if($insertUsuarioNuevo->execute(array($usuario, $correo, $nombre, $apellido, $contraseña))) {
+                echo "Usuario registrado exitósamente";
+            } else {
+                echo "Error: " . $insertUsuarioNuevo->error;
+            }            
+            unset($insertUsuarioNuevo);
+            unset($conn);
+        }
+    } else if(isset($_POST['login'])){
+        $correo = $_POST['correo'];
+        $contraseña = $_POST['contrasena'];
+        $logincorrecto = false;
+
+        if(strlen($correo)>0 && strlen($contraseña)>0){
+           $options = array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL);
+           $query = "select email, password from Usuario where email = ?";
+           $selectUsuario = $conn->prepare($query,$options);
+           $selectUsuario->execute(array($correo));
+
+           while($row = $selectUsuario->fetch(PDO::FETCH_ASSOC)){
+                if("$row[password]"==$contraseña){
+                    //Establecer variables de sesion (username, etc.)
+                    $logincorrecto = true;
+                    //hacer redireccion con location para ir a index
+                    break;
+                } else {
+                    echo "Usuario no válido";
+                }
+           }
+        }
+        echo $logincorrecto;
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +73,7 @@
         <div class="caja__trasera">
             <div class="caja__trasera-login">
                 <h3>¿Ya tienes cuenta?</h3>
-                <p>Inicia sesion para entrar ala pagina</p>
+                <p>Inicia sesion para entrar a la pagina</p>
                 <button id="btn__iniciar-sesion">Iniciar sesion</button>
             </div>
             <div class="caja__trasera-register">
@@ -37,19 +86,20 @@
         <div class="contenedor__login-register">
 
             <form action="" method="POST" class="formulario__login">
-                <h2>iniciar sesion</h2>
+                <h2>Iniciar sesion</h2>
                 <input type="text" placeholder="Correo Electronico" name="correo">
                 <input type="password" placeholder="contraseña" name="contrasena">
-                <button>entrar</button>
+                <button type="submit" name="login" value="login">entrar</button>
             </form>
 
             <form action="" method="POST" class="formulario__register">
                 <h2>registrarse</h2>
-                <input type="text" placeholder="Nombre Completo" name="nombre_completo">
+                <input type="text" placeholder="Nombre" name="nombre">
+                <input type="text" placeholder="Apellido" name="Apellido">
                 <input type="text" placeholder="correo Electronico" name="correo">
-               <input type="text" placeholder="usuario" name="usuario">
-               <input type="password" placeholder="contraseña" name="contrasena">
-               <button>Registrarse</button>
+                <input type="text" placeholder="usuario" name="usuario">
+                <input type="password" placeholder="contraseña" name="contrasena">
+                <button type="submit" name="registrar" value="registrarse">Registrarse</button>
             </form>
         </div>
 

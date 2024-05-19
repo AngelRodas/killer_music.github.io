@@ -53,18 +53,28 @@
                         <span>Inicio</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
-                       <ion-icon name="heart-outline"></ion-icon>
-                        <span>Favoritos</span>
-                    </a>
-                </li>
+                <?php 
+                    if(!isset($_SESSION['usuario_email'])){
+                ?>
                 <li>
                     <a href="login.php">
                         <ion-icon name="person-outline"></ion-icon>
                         <span>Iniciar sesión</span>
                     </a>
                 </li>
+                <?php 
+                }
+                ?>
+                <?php 
+                    if(isset($_SESSION['usuario_email'])){
+                ?>
+                <li>
+                    <a href="#">
+                       <ion-icon name="heart-outline"></ion-icon>
+                        <span>Favoritos</span>
+                    </a>
+                </li>
+                
                 <li>
                   <a href="index.php">
                     <ion-icon name="disc-outline"></ion-icon>
@@ -89,6 +99,20 @@
                         <span>Eliminar</span>
                     </a>
                 </li>
+                <?php
+                }
+                ?>
+                <?php
+                    if (isset($_SESSION['usuario_email']))
+                    {                    
+                        echo "<li>";
+                        echo "  <a href='logout.php?action=logout'>";
+                        echo "    <ion-icon name='singout-outline'></ion-icon>";
+                        echo "    <span class='link-name'>Cerrar Sesion</span>";
+                        echo "  </a>";
+                        echo "</li>";                    
+                    }
+                ?>
             </ul>
         </nav>
 <div>
@@ -109,11 +133,26 @@
         </nav>
     </div>
     <div class="usuario"><!--imagen de sesion -->
-      <img src="img/imagen_sesion.jpg" alt="">
-      <div class="info-usuario">
-        <div class="nombre-email">
-          <span class="nombre">Pikachu</span>
-          <span class="email">Pikachu@gmail.com</span>
+        <?php 
+            if(!isset($_SESSION['usuario_email'])){
+                echo "<img src='img/UNknownPerson.png' alt=''>";
+                echo "  <div class='info-usuario'>";
+                echo "      <div class='nombre-email'>";
+                echo "          <span class='nombre'>Desconocido</span>";
+            }
+            elseif (isset($_SESSION['usuario_email'])){
+                if (isset($_SESSION['imagen'])){
+                    echo "<img src=' ", $_SESSION['imagen'] ,"' alt=''>";
+                }
+                elseif (!isset($_SESSION['imagen'])){
+                    echo "<img src='img/UNknownPerson.png ' alt=''>";
+                }
+                echo "  <div class='info-usuario'>";
+                echo "      <div class='nombre-email'>";
+                echo "          <span class='nombre'>",$_SESSION['usuario'],"</span>";
+                echo "          <span class='email'>",$_SESSION['usuario_email'],"</span>";
+            }
+            ?>
         </div>
         <ion-icon name="ellipsis-vertical-outline"></ion-icon>
       </div>

@@ -3,20 +3,21 @@
     include_once("conexion.php");
     $conn = Cconexion::ConexionDB();
 
+    
     if(isset($_POST['registrar'])){
         $nombre = $_POST['nombre'];
         $correo = $_POST['correo'];
         $usuario = $_POST['usuario'];
         $contraseña = $_POST['contrasena'];
         $apellido = $_POST['Apellido'];
+        $imagen = $_POST['imagen']; 
 
         if(strlen($nombre)>0 && strlen($apellido)>0 && strlen($correo)>0 && strlen($usuario)>1 && strlen($contraseña)>1){
             
             $options = array( PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY, PDO::SQLSRV_ATTR_QUERY_TIMEOUT => 1);
-            $insertUsuarioNuevo = $conn->prepare("INSERT INTO Usuario (UserName, email, Nombre, Apellido, Password) values (?,?,?,?,?)",$options);
-            
-            //$insertUsuarioNuevo->bind_param("sssss", $usuario, $correo, $nombre, $apellido, $contraseña);
-            if($insertUsuarioNuevo->execute(array($usuario, $correo, $nombre, $apellido, $contraseña))) {
+            $insertUsuarioNuevo = $conn->prepare("INSERT INTO Usuario (UserName, email, Nombre, Apellido, Password, Imagen) values (?,?,?,?,?,?)", $options);
+
+            if($insertUsuarioNuevo->execute(array($usuario, $correo, $nombre, $apellido, $contraseña, $imagen))) {
                 echo "Usuario registrado exitósamente";
             } else {
                 echo "Error: " . $insertUsuarioNuevo->error;
@@ -27,21 +28,30 @@
     } else if(isset($_POST['login'])){
         $correo = $_POST['correo'];
         $contraseña = $_POST['contrasena'];
+        
         $logincorrecto = false;
 
         if(strlen($correo)>0 && strlen($contraseña)>0){
            $options = array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL);
-           $query = "select email, password from Usuario where email = ?";
+           $query = "SELECT email, Password, UserName, Imagen FROM Usuario where email = ?";
            $selectUsuario = $conn->prepare($query,$options);
            $selectUsuario->execute(array($correo));
 
-           while($row = $selectUsuario->fetch(PDO::FETCH_ASSOC)){
-                if("$row[password]"==$contraseña){
+        while($row = $selectUsuario->fetch(PDO::FETCH_ASSOC)){
+                if("$row[Password]"==$contraseña){
                     //Establecer variables de sesion (username, etc.)
                     $logincorrecto = true;
                     //hacer redireccion con location para ir a index
+                    $_SESSION['usuario_email'] = $correo; 
+                    $_SESSION['usuario']= "$row[UserName]"; 
+                    if(strlen("$row[Imagen]")>0){
+                        $_SESSION['imagen'] ="$row[Imagen]";
+                    }
+                    header("Location: ini.php");
                     break;
-                } else {
+
+              } 
+                else {
                     echo "Usuario no válido";
                 }
            }
@@ -99,6 +109,7 @@
                 <input type="text" placeholder="correo Electronico" name="correo">
                 <input type="text" placeholder="usuario" name="usuario">
                 <input type="password" placeholder="contraseña" name="contrasena">
+                <input type="text" placeholder="imagen" name="imagen">
                 <button type="submit" name="registrar" value="registrarse">Registrarse</button>
             </form>
         </div>

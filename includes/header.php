@@ -26,14 +26,8 @@
           <span style="color: white;">BeatBuddy</span>
         </div>
     <?php 
-        $pedrito = 0;
-        if ($pedrito == 1){
-        $sql = "SELECT EsAdmin FROM Usuario where EsAdmin = 1"; 
-        $result = $conn -> query($sql);
-        if ($result -> num_rows > 0) {
-
-        }
-        }
+        if(isset($_SESSION['usuario_email'])){
+            if ($_SESSION['EsAdmin']==1){
     ?>
         <a class="agregar" href="agregar.php">
         <button class="boton">
@@ -44,6 +38,10 @@
 
         </button>
       </a>
+    <?php
+            }
+        }
+    ?>
     </div>
         <nav class="navegacion">
             <ul>
@@ -82,9 +80,9 @@
                 </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="musica.php">
                         <ion-icon name="bookmark-outline"></ion-icon>
-                        <span>Modo Admin</span>
+                        <span>Música</span>
                     </a>
                 </li>
                 <li>
@@ -107,7 +105,7 @@
                     {                    
                         echo "<li>";
                         echo "  <a href='logout.php?action=logout'>";
-                        echo "    <ion-icon name='singout-outline'></ion-icon>";
+                        echo "    <ion-icon name='trash-outline'></ion-icon>";
                         echo "    <span class='link-name'>Cerrar Sesion</span>";
                         echo "  </a>";
                         echo "</li>";                    

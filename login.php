@@ -1,6 +1,5 @@
 <?php
     require_once "includes/header.php"; 
-    include_once("conexion.php");
     $conn = Cconexion::ConexionDB();
 
     
@@ -19,6 +18,7 @@
 
             if($insertUsuarioNuevo->execute(array($usuario, $correo, $nombre, $apellido, $contraseña, $imagen))) {
                 echo "Usuario registrado exitósamente";
+                
             } else {
                 echo "Error: " . $insertUsuarioNuevo->error;
             }            
@@ -33,7 +33,7 @@
 
         if(strlen($correo)>0 && strlen($contraseña)>0){
            $options = array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL);
-           $query = "SELECT email, Password, UserName, Imagen FROM Usuario where email = ?";
+           $query = "SELECT email, Password, UserName, Imagen, EsAdmin FROM Usuario where email = ?";
            $selectUsuario = $conn->prepare($query,$options);
            $selectUsuario->execute(array($correo));
 
@@ -43,7 +43,9 @@
                     $logincorrecto = true;
                     //hacer redireccion con location para ir a index
                     $_SESSION['usuario_email'] = $correo; 
-                    $_SESSION['usuario']= "$row[UserName]"; 
+                    $_SESSION['usuario']= "$row[UserName]";
+                    $_SESSION['EsAdmin']= "$row[EsAdmin]";
+                    
                     if(strlen("$row[Imagen]")>0){
                         $_SESSION['imagen'] ="$row[Imagen]";
                     }

@@ -70,15 +70,15 @@ require_once "includes/header.php";
                   <h3 class="player__song">2024</h3>
             
               
-                  <audio src="audio/yoru-ni-kakeru.mp3" controls="controls"  preload="none"></audio>
-            
+                  <audio src="audio/yoru-ni-kakeru.mp3" controls="controls" preload="none"></audio>
+                  <br>
                   <div class="player__controls">
                     <div class="player__btn player__btn--medium" id="backward">
                       <i class="fas fa-backward"></i>
                     </div>
             
                     <div class="player__btn player__btn--medium blue play" id="play">
-                      <i class="fas fa-play play-btn"></i>
+                    <i class="fas fa-play play-btn"></i>
                       <i class="fas fa-pause pause-btn hide"></i>
                     </div>
             

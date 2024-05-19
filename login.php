@@ -35,28 +35,33 @@
            $options = array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL);
            $query = "SELECT email, Password, UserName, Imagen, EsAdmin FROM Usuario where email = ?";
            $selectUsuario = $conn->prepare($query,$options);
-           $selectUsuario->execute(array($correo));
-
-        while($row = $selectUsuario->fetch(PDO::FETCH_ASSOC)){
-                if("$row[Password]"==$contraseña){
-                    //Establecer variables de sesion (username, etc.)
-                    $logincorrecto = true;
-                    //hacer redireccion con location para ir a index
-                    $_SESSION['usuario_email'] = $correo; 
-                    $_SESSION['usuario']= "$row[UserName]";
-                    $_SESSION['EsAdmin']= "$row[EsAdmin]";
-                    
-                    if(strlen("$row[Imagen]")>0){
-                        $_SESSION['imagen'] ="$row[Imagen]";
-                    }
-                    header("Location: ini.php");
-                    break;
-
-              } 
-                else {
-                    echo "Usuario no válido";
+           if($selectUsuario->execute(array($correo))){
+                if ($selectUsuario->rowCount() > 0)
+                {
+                    while($row = $selectUsuario->fetch(PDO::FETCH_ASSOC)){
+                        if("$row[Password]"==$contraseña){
+                            //Establecer variables de sesion (username, etc.)
+                            $logincorrecto = true;
+                            //hacer redireccion con location para ir a index
+                            $_SESSION['usuario_email'] = $correo; 
+                            $_SESSION['usuario']= "$row[UserName]";
+                            $_SESSION['EsAdmin']= "$row[EsAdmin]";
+                            
+                            if(strlen("$row[Imagen]")>0){
+                                $_SESSION['imagen'] ="$row[Imagen]";
+                            }
+                            header("Location: ini.php");
+                            break;
+                        } 
+                        else {
+                            echo "Usuario o contraseña incorrectos!";
+                        }
+                    }    
                 }
-           }
+                else {
+                    echo "El usuario no existe!, verifique!";
+                }
+                }
         }
         echo $logincorrecto;
     }

@@ -39,7 +39,8 @@
                             echo "</div>";
                             echo "<div class='swiper mySwiper'>";
                             echo "  <div class='swiper-wrapper'>";    
-                            while($row2 = $selectAlbum->fetch(PDO::FETCH_ASSOC)){                    
+                            while($row2 = $selectAlbum->fetch(PDO::FETCH_ASSOC)){
+                                
                             ?>
                                 <div class="swiper-slide">
                                 <div class="player">

@@ -1,0 +1,7 @@
+.posicion {
+    display: flex;
+    width:5%;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    margin-top: -35px;
+}

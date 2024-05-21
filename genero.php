@@ -9,13 +9,13 @@ if(isset($_POST['agregar'])){
     $genero = $_POST['genero']; 
     if(strlen($genero)>0){
         $options = array( PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY, PDO::SQLSRV_ATTR_QUERY_TIMEOUT => 1);
-        $insertGenero = $conn->prepare("INSERT INTO Genero(Genero, Descripcion values (?,?)", $options);
+        $insertGenero = $conn->prepare("INSERT INTO Genero(Genero, Descripcion) values (?,?)", $options);
         
         if($insertGenero->execute(array($genero, $descripcion))) {
             echo "Género registrado exitósamente";
                         
         } else {
-            echo "Error: " . $insertCancion->error;
+            echo "Error: " . $insertArtista->error;
         }            
         unset($insertGenero);
         unset($conn);
@@ -41,7 +41,7 @@ if(isset($_POST['agregar'])){
         </div>
     </div>
     <div class="container mt-5">
-        <h2 class="text-center mb-2">Formulario de Música</h2>
+        <h2 class="text-center mb-2">Formulario de Género</h2>
         <form action="" method="POST">
             <div class="row mb-3">
                 <div class="col-md-6">

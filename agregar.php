@@ -7,23 +7,15 @@ require_once "includes/formulario.php";
     <?php
     if(isset($_POST['agregar'])){
         $nombre = $_POST['nombre'];
-        $artista = $_POST['artista'];
         $album = $_POST['album'];        
         $archivo = $_POST['archivo'];
         $duracion = $_POST['duracion'];
-        $genero = $_POST['genero']; 
-        $imagen = $_POST['imagen'];
-        $anio = $_POST['anio'];
     
 
         if(strlen($nombre)>0 && strlen($album)>0  && strlen($archivo)>0){
             $options = array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL);
             $query = "SELECT AlbumID, Nombre FROM Album";
             $selectAlbum = $conn->prepare($query,$options);
-            $query2 = "SELECT Genero From Genero";
-            $selectGenero = $conn->prepare($query2, $options);
-            $query3 = "SELECT NombreArtistico From Artista";
-            $selectArtista = $conn->prepare($query3, $options);
             if($selectAlbum->execute()){
                 while($row = $selectAlbum->fetch(PDO::FETCH_ASSOC)){
                     if($row['Nombre']==$album){                  

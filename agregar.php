@@ -1,60 +1,9 @@
 <?php
 require_once "includes/header.php";
+require_once "includes/formulario.php";
  $conn = Cconexion::ConexionDB();
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Base de datos de Música</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="includes/css/agregarL.css">
-    
-   <style>
-        body {
-            background-color: #121212;
-            color: #FFFFFF;
-            font-family: Arial, sans-serif;
-        }
-
-        .btn-primary {
-            background-color: #6a1b9a;
-            border-color: #6a1b9a;
-        }
-
-        .btn-primary:hover {
-            background-color: #7b1fa2;
-            border-color: #7b1fa2;
-        }
-
-        .btn-warning {
-            background-color: #9c27b0;
-            border-color: #9c27b0;
-        }
-
-        .btn-warning:hover {
-            background-color: #ab47bc;
-            border-color: #ab47bc;
-        }
-
-        .btn-danger {
-            background-color: #e91e63;
-            border-color: #e91e63;
-        }
-
-        .btn-danger:hover {
-            background-color: #f44336;
-            border-color: #f44336;
-        }
-
-        .form-label {
-            color: #9c27b0;
-        }
-    </style>
-</head>
-<body>
     <?php
     if(isset($_POST['agregar'])){
         $nombre = $_POST['nombre'];
@@ -62,12 +11,19 @@ require_once "includes/header.php";
         $album = $_POST['album'];        
         $archivo = $_POST['archivo'];
         $duracion = $_POST['duracion'];
+        $genero = $_POST['genero']; 
+        $imagen = $_POST['imagen'];
+        $anio = $_POST['anio'];
     
 
         if(strlen($nombre)>0 && strlen($album)>0  && strlen($archivo)>0){
             $options = array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL);
             $query = "SELECT AlbumID, Nombre FROM Album";
             $selectAlbum = $conn->prepare($query,$options);
+            $query2 = "SELECT Genero From Genero";
+            $selectGenero = $conn->prepare($query2, $options);
+            $query3 = "SELECT NombreArtistico From Artista";
+            $selectArtista = $conn->prepare($query3, $options);
             if($selectAlbum->execute()){
                 while($row = $selectAlbum->fetch(PDO::FETCH_ASSOC)){
                     if($row['Nombre']==$album){                  
@@ -87,10 +43,10 @@ require_once "includes/header.php";
                 }                                                                   
             }
             
-            
         }
     }
     ?>
+<body>
 <div class="container mt-5">
         <h2 class="text-center mb-2">Formulario de Música</h2>
         <form action="" method="POST">
@@ -130,15 +86,15 @@ require_once "includes/header.php";
         </form>
             <br>
             <div class="">
-                <a href=""><button class=" btn-primary" name="agregar">Agregar Género</button></a>
+                <a href="genero.php"><button class=" btn-primary" name="agregar">Agregar Género</button></a>
             </div>
             <br>
             <div class="">
-                <a href=""><button class=" btn-primary" name="agregar">Agregar Artísta</button></a>
+                <a href="artista.php"><button class=" btn-primary" name="agregar">Agregar Artísta</button></a>
             </div>
             <br>
             <div class="">
-                <a href=""><button class=" btn-primary">Agregar Album</button></a>
+                <a href="agregaralbum.php"><button class=" btn-primary">Agregar Album</button></a>
             </div>
             
         
@@ -169,8 +125,6 @@ require_once "includes/header.php";
 
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 <?php
 require_once "includes/footer.php";

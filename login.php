@@ -33,7 +33,7 @@
 
         if(strlen($correo)>0 && strlen($contraseña)>0){
            $options = array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL);
-           $query = "SELECT email, Password, UserName, Imagen, EsAdmin FROM Usuario where email = ?";
+           $query = "SELECT email, Password, UserName, Imagen, EsAdmin, UsuarioID FROM Usuario where email = ?";
            $selectUsuario = $conn->prepare($query,$options);
            if($selectUsuario->execute(array($correo))){
                 if ($selectUsuario->rowCount() > 0)
@@ -46,6 +46,7 @@
                             $_SESSION['usuario_email'] = $correo; 
                             $_SESSION['usuario']= "$row[UserName]";
                             $_SESSION['EsAdmin']= "$row[EsAdmin]";
+                            $_SESSION['UsuarioID'] = "$row[UsuarioID]";
                             
                             if(strlen("$row[Imagen]")>0){
                                 $_SESSION['imagen'] ="$row[Imagen]";

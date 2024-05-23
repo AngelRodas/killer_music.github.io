@@ -99,7 +99,7 @@ if (isset($_POST['agregar'])) {
                     echo "    <td>Album</td>";
                     echo "    <td>Cancion</td>";
                     echo "    <td>Archivo</td>";
-                    echo "    <td>Duracion</td>";
+                    echo "    <td>Duracion (segundos)</td>";
                     echo "  </tr>";
                     while($row = $selectQuery->fetch(PDO::FETCH_ASSOC)){
                         echo "<tr>";
@@ -109,7 +109,7 @@ if (isset($_POST['agregar'])) {
                         echo "    <td>".$row['NombreAlbum']."</td>";
                         echo "    <td>".$row['NombreCancion']."</td>";
                         echo "    <td>".$row['Archivo']."</td>";
-                        echo "    <td>".$row['Duracion']."</td>";
+                        echo "    <td>".$row['Duracion']." segundos</td>";
                         echo "    <td><button type='submit' class='btn btn-primary' name='Editar'>Editar</button></td>";
                         echo "    <td><button type='submit' class='btn btn-primary' name='Eliminar'>Eliminar</button></td>";
                         echo "  </form>";

@@ -67,7 +67,7 @@
                     if(isset($_SESSION['usuario_email'])){
                 ?>
                 <li>
-                    <a href="#">
+                    <a href="musica.php?Favoritos=true">
                        <ion-icon name="heart-outline"></ion-icon>
                         <span>Favoritos</span>
                     </a>

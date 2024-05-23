@@ -20,7 +20,7 @@
                 echo "Usuario registrado exitósamente";
                 
             } else {
-                echo "Error: " . $insertUsuarioNuevo->error;
+                echo "Error: " . $insertUsuarioNuevo->errorInfo();
             }            
             unset($insertUsuarioNuevo);
             unset($conn);

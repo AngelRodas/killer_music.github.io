@@ -31,7 +31,7 @@ if(isset($_POST['agregar'])){
                                     echo "Album registrado exitósamente";
 
                                 } else {
-                                    echo "Error: " . $insertAlbum->error;
+                                    echo "Error: " . $insertAlbum->errorInfo();
                                 }            
                                 unset($insertAlbum);
                                 unset($conn);

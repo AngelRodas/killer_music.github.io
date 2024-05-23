@@ -33,7 +33,7 @@ if(isset($_POST['agregar'])){
                     if($insertArtista->execute(array($nombreA, $nombre, $apellido, $genero, $anio, $esgrupo, $imagen))) {
                         echo "Artista registrado exitósamente";
                     } else {
-                        echo "Error: " . $insertArtista->error;
+                        echo "Error: " . $insertArtista->errorInfo();
                     }            
                     unset($insertArtista);
                     unset($conn);

@@ -327,7 +327,7 @@ main.min-main{
 }
 
 .container input[type="text"] {
-    width: 200px;
+    width: 350px;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
@@ -338,12 +338,13 @@ main.min-main{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px; 
+    width: 140px; 
     height: 40px; 
     background-color: var(--buttom); 
     border-radius: 5px;
     cursor: pointer;
     border: none;
+    margin: 5px;
 }
 
 /* Incertamos el carrusel */

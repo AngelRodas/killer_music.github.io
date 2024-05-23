@@ -1,27 +1,67 @@
 <?php
-require_once "includes/header.php";
-require_once "includes/formulario.php";
- $conn = Cconexion::ConexionDB();
-?>
-<?php 
-if(isset($_POST['agregar'])){
-    $descripcion = $_POST['descripcion'];
-    $genero = $_POST['genero']; 
-    if(strlen($genero)>0){
-        $options = array( PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY, PDO::SQLSRV_ATTR_QUERY_TIMEOUT => 1);
-        $insertGenero = $conn->prepare("INSERT INTO Genero(Genero, Descripcion) values (?,?)", $options);
-        
-        if($insertGenero->execute(array($genero, $descripcion))) {
-            echo "Género registrado exitósamente";
-                        
-        } else {
-            echo "Error: " . $insertArtista->error;
-        }            
-        unset($insertGenero);
-        unset($conn);
-    
+    require_once "includes/header.php";
+    require_once "includes/formulario.php";
+    $conn = Cconexion::ConexionDB();
+    if(isset($_POST['agregar'])){
+        $descripcion = $_POST['descripcion'];
+        $genero = $_POST['genero']; 
+        if(strlen($genero)>0){
+            $options = array( PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY, PDO::SQLSRV_ATTR_QUERY_TIMEOUT => 1);
+            $insertQuery = $conn->prepare("INSERT INTO Genero(Genero, Descripcion) values (?,?)", $options);
+            
+            if($insertQuery->execute(array($genero, $descripcion))) {
+                echo "Género registrado exitósamente";
+                            
+            } else {
+                echo "Error: " . $insertQuery->errorInfo();
+            }            
+            unset($insertQuery);
+            //unset($conn);        
+        }
     }
-}
+    else if(isset($_POST['actualizar'])){
+        $descripcion = $_POST['descripcion'];
+        $genero = $_POST['genero']; 
+        $GeneroID = $_POST['GeneroID']; 
+        if(strlen($genero)>0){
+            $options = array( PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY, PDO::SQLSRV_ATTR_QUERY_TIMEOUT => 1);
+            $UpdateQuery = $conn->prepare("UPDATE Genero set Genero = ?, Descripcion = ? where GeneroID = ?", $options);
+            
+            if($UpdateQuery->execute(array($genero, $descripcion, $GeneroID))) {
+                echo "Registro actualizado exitosamente";
+                            
+            } else {
+                echo "Error: " . $UpdateQuery->errorInfo();
+            }            
+            unset($UpdateQuery);
+        }
+    }
+    else if(isset($_POST['Eliminar'])){
+        $GeneroID = $_POST['GeneroID'];
+        $options = array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL);
+        $query = "select * from Genero left join Artista on Artista.GeneroID = Genero.GeneroID left join Album on Album.GeneroID = Genero.GeneroID where Genero.GeneroID = ? and (Artista.ArtistaID is not null or Album.AlbumID is not null)";
+        $selectQuery = $conn->prepare($query,$options);
+        if($selectQuery->execute(array($GeneroID))){
+            if($selectQuery->rowCount()>0)
+            {
+                echo "No se puede eliminar el registro porque está en uso";
+            }
+            else
+            {
+                $options = array( PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY, PDO::SQLSRV_ATTR_QUERY_TIMEOUT => 1);
+                $DeleteQuery = $conn->prepare("DELETE from Genero where GeneroID = ?", $options);
+                
+                if($DeleteQuery->execute(array($GeneroID))) {
+                    echo "Registro eliminado exitosamente";
+                                
+                } else {
+                    echo "Error: " . $DeleteQuery->errorInfo();
+                }            
+                unset($DeleteQuery);        
+            }
+        }
+        unset($selectQuery);        
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,20 +83,93 @@ if(isset($_POST['agregar'])){
     <div class="container mt-5">
         <h2 class="text-center mb-2">Formulario de Género</h2>
         <form action="" method="POST">
+            <?php
+                if(isset($_POST['Editar'])){                    
+                    $options = array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL);
+                    $query = "select * from Genero where GeneroID = ?";
+                    $GeneroID = $_POST['GeneroID'];
+                    $selectQuery = $conn->prepare($query,$options);
+                    if($selectQuery->execute(array($GeneroID))){
+                        while($row = $selectQuery->fetch(PDO::FETCH_ASSOC)){
+                            $descripcion = $row['Descripcion'];
+                            $genero = $row['Genero'];
+                        }
+                    }
+                    echo "<input type='hidden' name='GeneroID' value='".$GeneroID."'/>";
+                }
+
+            
+            ?>
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="nombre" class="form-label fw-bold">Género:</label>
-                    <input type="text" class="form-control" id="genero" name="genero" required>
+                    <?php
+                        if(isset($_POST['Editar'])){
+                            echo "<input type='text' class='form-control' id='genero' name='genero' value='".$genero."' required>";
+                        }
+                        else
+                        {
+                            echo "<input type='text' class='form-control' id='genero' name='genero' required>";
+                        }                        
+                    ?>
                 </div>
                 <div class="col-md-6">
                     <label for="artista" class="form-label fw-bold">Descripcion:</label>
-                    <input type="text" class="form-control" id="descripcion" name="descripcion" required>
+                    <?php
+                        if(isset($_POST['Editar'])){
+                            echo "<input type='text' class='form-control' id='descripcion' name='descripcion' value='".$descripcion."' required>";
+                        }
+                        else
+                        {
+                            echo "<input type='text' class='form-control' id='descripcion' name='descripcion' required>";
+                        }
+                    ?>
                 </div>
             </div>
             <div class="text-center">
-                <button type="submit" class="btn btn-primary" name="agregar">Agregar</button>
+            <?php
+                if(isset($_POST['Editar'])){
+                    echo "<button type='submit' class='btn btn-primary' name='actualizar'>Actualizar</button>";
+                }
+                else
+                {
+                    echo "<button type='submit' class='btn btn-primary' name='agregar'>Agregar</button>";
+                }                        
+                    ?>
             </div>
         </form>
+    </div>
+    <div class="container">
+        <?php
+            $options = array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL);
+            $query = "select * from Genero";
+            $selectQuery = $conn->prepare($query,$options);
+            if($selectQuery->execute()){
+                if($selectQuery->rowCount()>0)
+                {
+                    echo "<table>";
+                    echo "  <tr>";
+                    echo "    <td>Genero</td>";
+                    echo "    <td>Descripcion</td>";
+                    echo "  </tr>";
+                    while($row = $selectQuery->fetch(PDO::FETCH_ASSOC)){
+                        echo "<tr>";
+                        echo "  <form method='POST'>";
+                        echo "    <input type='hidden' name='GeneroID' value='".$row['GeneroID']."'/>";
+                        echo "    <td>".$row['Genero']."</td>";
+                        echo "    <td>".$row['Descripcion']."</td>";
+                        echo "    <td><button type='submit' class='btn btn-primary' name='Editar'>Editar</button></td>";
+                        echo "    <td><button type='submit' class='btn btn-primary' name='Eliminar'>Eliminar</button></td>";
+                        echo "  </form>";
+                        echo "</tr>";
+                    }
+                    echo "</table>";
+                }
+            }
+            unset($selectQuery);
+            unset($conn);        
+        ?>
+    </div>
 </body>
 <?php
 require_once "includes/footer.php";

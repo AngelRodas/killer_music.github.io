@@ -33,19 +33,22 @@ if (isset($_POST['agregar'])) {
         unset($insertQuery);
     }
 } else if (isset($_POST['actualizar'])) {
-    $descripcion = $_POST['descripcion'];
-    $genero = $_POST['genero'];
-    $GeneroID = $_POST['GeneroID'];
-    if (strlen($genero) > 0) {
-        $options = array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY, PDO::SQLSRV_ATTR_QUERY_TIMEOUT => 1);
-        $UpdateQuery = $conn->prepare("UPDATE Genero set Genero = ?, Descripcion = ? where GeneroID = ?", $options);
+    $nombre = $_POST['nombre'];
+    $album = $_POST['album'];
+    $archivo = $_POST['archivo'];
+    $duracion = $_POST['duracion'];
+    $CancionID = $_POST['CancionID'];
 
-        if ($UpdateQuery->execute(array($genero, $descripcion, $GeneroID))) {
-            echo "Registro actualizado exitosamente";
+    if (strlen($nombre) > 0 && $album > 0  && strlen($archivo) > 0 && $duracion > 0) {
+        $options = array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY, PDO::SQLSRV_ATTR_QUERY_TIMEOUT => 1);
+        $insertUpdate = $conn->prepare("UPDATE Cancion Set Nombre = ?, Archivo = ?, AlbumID = ?, Duracion = ? where CancionID = ?", $options);
+
+        if ($insertUpdate->execute(array($nombre, "audio/$archivo", $album, $duracion, $CancionID))) {
+            echo "Canción Actualizada exitósamente";
         } else {
-            echo "Error: " . $UpdateQuery->errorInfo();
+            echo "Error: " . $insertUpdate->errorInfo();
         }
-        unset($UpdateQuery);
+        unset($insertUpdate);
     }
 } else if (isset($_POST['Eliminar'])) {
     $CancionID = $_POST['CancionID'];

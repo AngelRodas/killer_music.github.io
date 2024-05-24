@@ -32,7 +32,7 @@
         $insertQuery = $conn->prepare("INSERT INTO CancionUsuario(CancionID, UsuarioID, EsFavorita) values (?,?,?)", $options);
 
         if ($insertQuery->execute(array($CancionID, $UsuarioID, 1))) {
-            echo "Canción agregada a favoritas exitósamente";
+            
         } else {
             echo "Error: " . $insertQuery->errorInfo();
         }
@@ -46,7 +46,7 @@
         $DeleteQuery = $conn->prepare("DELETE from CancionUsuario where UsuarioID = ? and CancionID = ?", $options);
 
         if ($DeleteQuery->execute(array($UsuarioID, $CancionID))) {
-            echo "Registro eliminado exitosamente";
+            
         } else {
             echo "Error: " . $DeleteQuery->errorInfo();
         }
@@ -68,12 +68,7 @@
         </div>
         </a>
     </div>
-    <div class="container">
-        <input type="text" placeholder="Buscar">
-        <div class="btn">
-            <ion-icon name="search-outline"></ion-icon>
-        </div>
-    </div>
+    
     <?php
     if (isset($_GET['AlbumID'])) {
         $AlbumID = $_GET['AlbumID'];

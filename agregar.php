@@ -22,6 +22,40 @@ if (isset($_POST['agregar'])) {
         }
         unset($insertQuery);
     }
+} else if (isset($_POST['actualizar'])) {
+    $descripcion = $_POST['descripcion'];
+    $genero = $_POST['genero'];
+    $GeneroID = $_POST['GeneroID'];
+    if (strlen($genero) > 0) {
+        $options = array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY, PDO::SQLSRV_ATTR_QUERY_TIMEOUT => 1);
+        $UpdateQuery = $conn->prepare("UPDATE Genero set Genero = ?, Descripcion = ? where GeneroID = ?", $options);
+
+        if ($UpdateQuery->execute(array($genero, $descripcion, $GeneroID))) {
+            echo "Registro actualizado exitosamente";
+        } else {
+            echo "Error: " . $UpdateQuery->errorInfo();
+        }
+        unset($UpdateQuery);
+    }
+} else if (isset($_POST['Eliminar'])) {
+    $CancionID = $_POST['CancionID'];
+    $options = array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL);
+    $query = "SELECT * from Cancion where CancionID = ? ";
+    $selectQuery = $conn->prepare($query, $options);
+    if ($selectQuery->execute(array($CancionID))) {
+
+        $options = array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY, PDO::SQLSRV_ATTR_QUERY_TIMEOUT => 1);
+        $DeleteQuery = $conn->prepare("DELETE from Cancion where CancionID = ?", $options);
+
+        if ($DeleteQuery->execute(array($CancionID))) {
+            echo "Registro eliminado exitosamente";
+        } else {
+            echo "Error: " . $DeleteQuery->errorInfo();
+        }
+        unset($DeleteQuery);
+    }
+
+    unset($selectQuery);
 }
 ?>
 
@@ -29,17 +63,42 @@ if (isset($_POST['agregar'])) {
     <div class="container mt-5">
         <h2 class="text-center mb-2">Formulario de Música</h2>
         <form action="" method="POST">
+            <?php
+            if (isset($_POST['Editar'])) {
+                $options = array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL);
+                $query = "SELECT * from Cancion where CancionID = ?";
+                $CancionID = $_POST['CancionID'];
+                $selectQuery = $conn->prepare($query, $options);
+                if ($selectQuery->execute(array($CancionID))) {
+                    while ($row = $selectQuery->fetch(PDO::FETCH_ASSOC)) {
+                        $nombre = $row['Nombre'];
+                        $archivo = $row['Archivo'];
+                        $duracion = $row['Duracion'];
+                        $album = $row['AlbumID'];
+                    }
+                }
+                echo "<input type='hidden' name='CancionID' value='" . $CancionID . "'/>";
+            }
+
+
+            ?>
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="nombre" class="form-label fw-bold">Nombre de la Canción:</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" required>
+                    <?php
+                    if (isset($_POST['Editar'])) {
+                        echo "<input type='text' class='form-control' id='nombre' name='nombre' value='" . $nombre . "' required>";
+                    } else {
+                        echo "<input type='text' class='form-control' id='nombre' name='nombre' required>";
+                    }
+                    ?>
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="album" class="form-label fw-bold">Álbum:</label>
                     <select id="album" name="album">
-                        <option value="0">Seleccione....</option>
+                        <option value='0'>Seleccione....</option>
                         <?php
                         $options = array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL);
                         $query = "select al.AlbumID, al.Nombre, ar.NombreArtistico + ' (' + al.Nombre + ')' + ' [' + gen.Genero + '] ' DescripcionEspecial from Album al inner join Artista ar on al.ArtistaID = ar.ArtistaID inner join Genero gen on al.GeneroID = gen.GeneroID order by ar.NombreArtistico, al.Nombre asc";
@@ -47,10 +106,15 @@ if (isset($_POST['agregar'])) {
                         if ($selectQuery->execute()) {
                             if ($selectQuery->rowCount() > 0) {
                                 while ($row = $selectQuery->fetch(PDO::FETCH_ASSOC)) {
-                                    echo "<option value='" . $row['AlbumID'] . "'>" . $row['DescripcionEspecial'] . "</option>";
+                                    if($row['AlbumID'] == $_POST['AlbumID']){
+                                        echo "<option value='" . $row['AlbumID'] . "' selected>" . $row['DescripcionEspecial'] . "</option>";    
+                                    }else {
+                                    echo "<option value='" . $row['AlbumID'] . "' >" . $row['DescripcionEspecial'] . "</option>";
+                                    }
                                 }
                             }
                         }
+
                         unset($selectQuery);
                         ?>
                     </select>
@@ -59,17 +123,35 @@ if (isset($_POST['agregar'])) {
             <div class="row-md-3">
                 <div class="col-md-6">
                     <label for="genero" class="form-label fw-bold">Archivo MP3:</label>
-                    <input type="text" class="form-control" id="archivo" name="archivo" required>
+                    <?php
+                    if (isset($_POST['Editar'])) {
+                        echo "<input type='text' class='form-control' id='archivo' name='archivo' value='" . $archivo . "' required>";
+                    } else {
+                        echo "<input type='text' class='form-control' id='archivo' name='archivo' required>";
+                    }
+                    ?>
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="anio" class="form-label fw-bold">Duracion:</label>
-                    <input type="number" class="form-control" id="duracion" name="duracion" required>
+                    <?php
+                    if (isset($_POST['Editar'])) {
+                        echo "<input type='number' class='form-control' id='duracion' name='duracion' value='" . $duracion . "' required>";
+                    } else {
+                        echo "<input type='number' class='form-control' id='duracion' name='duracion' required>";
+                    }
+                    ?>
                 </div>
             </div>
             <div class="text-center">
-                <button type="submit" class="btn btn-primary" name="agregar">Agregar</button>
+                <?php
+                if (isset($_POST['Editar'])) {
+                    echo "<button type='submit' class='btn btn-primary' name='actualizar'>Actualizar</button>";
+                } else {
+                    echo "<button type='submit' class='btn btn-primary' name='agregar'>Agregar</button>";
+                }
+                ?>
             </div>
         </form>
         <br>
@@ -87,39 +169,39 @@ if (isset($_POST['agregar'])) {
     </div>
     <div class="container">
         <?php
-            $options = array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL);
-            $query = "select c.CancionID, c.Nombre NombreCancion, c.Archivo, c.Duracion, al.AlbumID, al.Nombre NombreAlbum, ar.ArtistaID, ar.NombreArtistico from Cancion c inner join Album al on c.AlbumID = al.AlbumID inner join Artista ar on al.ArtistaID = ar.ArtistaID order by ar.NombreArtistico, al.Nombre, c.Nombre asc";
-            $selectQuery = $conn->prepare($query,$options);
-            if($selectQuery->execute()){
-                if($selectQuery->rowCount()>0)
-                {
-                    echo "<table>";
-                    echo "  <tr>";
-                    echo "    <td>Artista</td>";
-                    echo "    <td>Album</td>";
-                    echo "    <td>Cancion</td>";
-                    echo "    <td>Archivo</td>";
-                    echo "    <td>Duracion (segundos)</td>";
-                    echo "  </tr>";
-                    while($row = $selectQuery->fetch(PDO::FETCH_ASSOC)){
-                        echo "<tr>";
-                        echo "  <form method='POST'>";
-                        echo "    <input type='hidden' name='GeneroID' value='".$row['CancionID']."'/>";
-                        echo "    <td>".$row['NombreArtistico']."</td>";
-                        echo "    <td>".$row['NombreAlbum']."</td>";
-                        echo "    <td>".$row['NombreCancion']."</td>";
-                        echo "    <td>".$row['Archivo']."</td>";
-                        echo "    <td>".$row['Duracion']." segundos</td>";
-                        echo "    <td><button type='submit' class='btn btn-primary' name='Editar'>Editar</button></td>";
-                        echo "    <td><button type='submit' class='btn btn-primary' name='Eliminar'>Eliminar</button></td>";
-                        echo "  </form>";
-                        echo "</tr>";
-                    }
-                    echo "</table>";
+        $options = array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL);
+        $query = "select c.CancionID, c.Nombre NombreCancion, c.Archivo, c.Duracion, al.AlbumID, al.Nombre NombreAlbum, ar.ArtistaID, ar.NombreArtistico from Cancion c inner join Album al on c.AlbumID = al.AlbumID inner join Artista ar on al.ArtistaID = ar.ArtistaID order by ar.NombreArtistico, al.Nombre, c.Nombre asc";
+        $selectQuery = $conn->prepare($query, $options);
+        if ($selectQuery->execute()) {
+            if ($selectQuery->rowCount() > 0) {
+                echo "<table>";
+                echo "  <tr>";
+                echo "    <td>Artista</td>";
+                echo "    <td>Album</td>";
+                echo "    <td>Cancion</td>";
+                echo "    <td>Archivo</td>";
+                echo "    <td>Duracion</td>";
+                echo "  </tr>";
+                while ($row = $selectQuery->fetch(PDO::FETCH_ASSOC)) {
+                    echo "<tr>";
+                    echo "  <form method='POST'>";
+                    echo "    <input type='hidden' name='CancionID' value='" . $row['CancionID'] . "'/>";
+                    echo "    <input type='hidden' name='AlbumID' value='" . $row['AlbumID'] . "'/>";
+                    echo "    <td>" . $row['NombreArtistico'] . "</td>";
+                    echo "    <td>" . $row['NombreAlbum'] . "</td>";
+                    echo "    <td>" . $row['NombreCancion'] . "</td>";
+                    echo "    <td>" . $row['Archivo'] . "</td>";
+                    echo "    <td>" . $row['Duracion'] . " minutos</td>";
+                    echo "    <td><button type='submit' class='btn btn-primary' name='Editar'>Editar</button></td>";
+                    echo "    <td><button type='submit' class='btn btn-primary' name='Eliminar'>Eliminar</button></td>";
+                    echo "  </form>";
+                    echo "</tr>";
                 }
+                echo "</table>";
             }
-            unset($selectQuery);
-            unset($conn);                    
+        }
+        unset($selectQuery);
+        unset($conn);
         ?>
     </div>
 </body>

@@ -1,7 +1,16 @@
 <?php
-require_once "includes/header.php";
-require_once "includes/formulario.php";
- $conn = Cconexion::ConexionDB();
+    require_once "includes/header.php";
+    if (!isset($_SESSION['UsuarioID'])){
+        header("Location: login.php");
+    }
+
+    if ($_SESSION['EsAdmin']==0){
+        echo "Usted no tiene permisos de estar acá!, fuera o le digo a tus papás";
+        exit;
+    }
+    
+    require_once "includes/formulario.php";
+    $conn = Cconexion::ConexionDB();
 ?>
 <?php 
 if(isset($_POST['agregar'])){
@@ -236,7 +245,7 @@ else if(isset($_POST['Eliminar'])){
         $selectQuery = $conn->prepare($query, $options);
         if ($selectQuery->execute()) {
             if ($selectQuery->rowCount() > 0) {
-                echo "<table>";
+                echo "<table border='1px'>";
                 echo "  <tr>";
                 echo "    <td>NombreArtistico</td>";
                 echo "    <td>Nombre</td>";

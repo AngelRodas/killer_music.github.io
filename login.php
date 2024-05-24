@@ -51,7 +51,7 @@
                             if(strlen("$row[Imagen]")>0){
                                 $_SESSION['imagen'] ="$row[Imagen]";
                             }
-                            header("Location: ini.php");
+                            header("Location: index.php");
                             break;
                         } 
                         else {

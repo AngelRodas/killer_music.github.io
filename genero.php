@@ -1,7 +1,17 @@
 <?php
     require_once "includes/header.php";
-    require_once "includes/formulario.php";
+    if (!isset($_SESSION['UsuarioID'])){
+        header("Location: login.php");
+    }
+
+    if ($_SESSION['EsAdmin']==0){
+        echo "Usted no tiene permisos de estar acá!, fuera o le digo a tus papás";
+        exit;
+    }
+    
+        require_once "includes/formulario.php";
     $conn = Cconexion::ConexionDB();
+
     if(isset($_POST['agregar'])){
         $descripcion = $_POST['descripcion'];
         $genero = $_POST['genero']; 
@@ -147,7 +157,7 @@
             if($selectQuery->execute()){
                 if($selectQuery->rowCount()>0)
                 {
-                    echo "<table>";
+                    echo "<table border='1px'>";
                     echo "  <tr>";
                     echo "    <td>Genero</td>";
                     echo "    <td>Descripcion</td>";

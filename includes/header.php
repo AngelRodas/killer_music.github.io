@@ -46,7 +46,7 @@
         <nav class="navegacion">
             <ul>
                 <li>
-                    <a href="ini.php">
+                    <a href="index.php">
                         <ion-icon name="home-outline"></ion-icon>
                         <span>Inicio</span>
                     </a>
@@ -71,32 +71,13 @@
                        <ion-icon name="heart-outline"></ion-icon>
                         <span>Favoritos</span>
                     </a>
-                </li>
-                
-                <li>
-                  <a href="index.php">
-                    <ion-icon name="disc-outline"></ion-icon>
-                    <span> Mis Discos</span>
-                </a>
-                </li>
+                </li>                               
                 <li>
                     <a href="musica.php">
                         <ion-icon name="bookmark-outline"></ion-icon>
                         <span>Música</span>
                     </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <ion-icon name="alert-circle-outline"></ion-icon>
-                        <span>Spam</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <ion-icon name="trash-outline"></ion-icon>
-                        <span>Eliminar</span>
-                    </a>
-                </li>
+                </li>                
                 <?php
                 }
                 ?>

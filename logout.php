@@ -8,7 +8,7 @@
             $_SESSION = array();
             session_destroy();    
 
-            header("Location: ini.php");
+            header("Location: index.php");
         }
     }
 ?>

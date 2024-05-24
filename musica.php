@@ -1,6 +1,9 @@
 <?php 
     require_once "includes/header.php";
     $conn = Cconexion::conexionDB();
+    if (!isset($_SESSION['UsuarioID'])){
+        header("Location: index.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">

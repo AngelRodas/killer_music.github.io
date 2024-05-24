@@ -1,6 +1,9 @@
 <?php
-require_once "includes/header.php";
-$conn = Cconexion::conexionDB();
+    require_once "includes/header.php";
+    $conn = Cconexion::conexionDB();
+    if (!isset($_SESSION['UsuarioID'])){
+        header("Location: index.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,18 +24,48 @@ $conn = Cconexion::conexionDB();
     if (isset($_GET['Favoritos'])) {
         $MostrarSoloFavoritos = $_GET['Favoritos'];
     }
+
+    if (isset($_POST['VolverFavorita'])) {
+        $UsuarioID = $_SESSION['UsuarioID'];
+        $CancionID = $_POST['CancionID'];
+        $options = array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY, PDO::SQLSRV_ATTR_QUERY_TIMEOUT => 1);
+        $insertQuery = $conn->prepare("INSERT INTO CancionUsuario(CancionID, UsuarioID, EsFavorita) values (?,?,?)", $options);
+
+        if ($insertQuery->execute(array($CancionID, $UsuarioID, 1))) {
+            echo "Canción agregada a favoritas exitósamente";
+        } else {
+            echo "Error: " . $insertQuery->errorInfo();
+        }
+        unset($insertQuery);
+    }
+    else if (isset($_POST['VolverNoFavorita'])) {
+
+        $UsuarioID = $_POST['UsuarioID'];
+        $CancionID = $_POST['CancionID'];
+        $options = array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY, PDO::SQLSRV_ATTR_QUERY_TIMEOUT => 1);
+        $DeleteQuery = $conn->prepare("DELETE from CancionUsuario where UsuarioID = ? and CancionID = ?", $options);
+
+        if ($DeleteQuery->execute(array($UsuarioID, $CancionID))) {
+            echo "Registro eliminado exitosamente";
+        } else {
+            echo "Error: " . $DeleteQuery->errorInfo();
+        }
+        unset($DeleteQuery);
+
+        unset($selectQuery);
+    }
     ?>
     <div class="posicion">
-        <?php 
-        if($MostrarSoloFavoritos){
+        <?php
+        if ($MostrarSoloFavoritos) {
             echo "<a href='musica.php?Favoritos=true'>";
-        }else{
+        } else {
             echo "<a href='musica.php'>";
         }
         ?>
-            <div class="player__btn player__btn--small" id="previous">
-                <i class="fas fa-arrow-left"></i>
-            </div>
+        <div class="player__btn player__btn--small" id="previous">
+            <i class="fas fa-arrow-left"></i>
+        </div>
         </a>
     </div>
     <div class="container">
@@ -58,20 +91,21 @@ $conn = Cconexion::conexionDB();
             }
         }
         if ($MostrarSoloFavoritos) {
-            $query2 = "select c.*, al.Portada, al.Anio, al.Nombre NombreAlbum from CancionUsuario cu inner join Cancion c on cu.CancionID = c.CancionID inner join Album al on al.AlbumID = c.AlbumID where 1=1 and cu.EsFavorita = 1 and cu.UsuarioID  = ? and al.AlbumID = ?";
+            $query2 = "select c.*, al.Portada, al.Anio, al.Nombre NombreAlbum, cu.EsFavorita from CancionUsuario cu inner join Cancion c on cu.CancionID = c.CancionID inner join Album al on al.AlbumID = c.AlbumID where 1=1 and cu.EsFavorita = 1 and cu.UsuarioID  = ? and al.AlbumID = ?";
             $selectCancion = $conn->prepare($query2, $options);
             $EjecucionSelectCorrecta = $selectCancion->execute(array($_SESSION['UsuarioID'], $AlbumID));
         } else {
-            $query2 = "select Cancion.*, Album.Portada, Album.Anio, Album.Nombre NombreAlbum from Cancion inner join Album on Album.AlbumID = Cancion.AlbumID where Album.AlbumID = ?";
+            $query2 = "select Cancion.*, Album.Portada, Album.Anio, Album.Nombre NombreAlbum, coalesce(CancionUsuario.EsFavorita,0) EsFavorita from Cancion inner join Album on Album.AlbumID = Cancion.AlbumID left join CancionUsuario on Cancion.CancionID = CancionUsuario.CancionID where Album.AlbumID = ? and (CancionUsuario.UsuarioID = ? or CancionUsuario.CancionUsuarioID is null)";
             $selectCancion = $conn->prepare($query2, $options);
-            $EjecucionSelectCorrecta = $selectCancion->execute(array($AlbumID));
+            $EjecucionSelectCorrecta = $selectCancion->execute(array($AlbumID,$_SESSION['UsuarioID']));
         }
         if ($EjecucionSelectCorrecta) {
             if ($selectCancion->rowCount() > 0) {
                 echo "<div class='swiper mySwiper'>";
                 echo "  <div class='swiper-wrapper'>";
                 while ($row2 = $selectCancion->fetch(PDO::FETCH_ASSOC)) {
-    ?>
+                    $CancionID = $row2['CancionID']; 
+                ?>
                     <div class="swiper-slide">
                         <div class="player">
                             <div class="player__controls">
@@ -90,9 +124,22 @@ $conn = Cconexion::conexionDB();
                                 <?php
                                 echo "<h5 class='player__title'>" . $row2['NombreAlbum'] . "</h5>";
                                 ?>
-                                <a class="player__btn player__btn--small">
-                                    <i class="fas fa-bars"></i>
-                                </a>
+                                <form action="" method="post">
+                                    <?php
+                                    $UsuarioID = $_SESSION['UsuarioID'];
+                                    echo "  <input type='hidden' name='UsuarioID' value='" . $UsuarioID . "'/>";
+                                    echo "  <input type='hidden' name='CancionID' value='" . $row2['CancionID'] . "'/>";
+                                    echo "  <input type='hidden' name='EsFavorita' value='" . $row2['EsFavorita'] . "'/>";
+                                    echo "  <a class='player__btn player__btn--small'>";
+                                    if ($row2['EsFavorita']==1) {
+                                        echo "<input type='submit' value='❤️' name='VolverNoFavorita'>";
+                                    }
+                                    else {
+                                        echo "<input type='submit' value='♡' name='VolverFavorita'>";
+                                    }
+                                    echo "  </a>"
+                                    ?>
+                                </form>
                                 <div class="player__menu hide" id="menu">
                                     <ul>
                                         <li>Canción 1</li>

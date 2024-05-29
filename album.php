@@ -137,7 +137,7 @@
                                 </form>
                                 <div class="player__menu hide" id="menu">
                                     <ul>
-                                        <li>Canción 1</li>
+                                        <li>Canción 1 </li>
                                         <li>Canción 2</li>
                                         <li>Canción 3</li>
                                         <!-- Agrega más canciones aquí -->

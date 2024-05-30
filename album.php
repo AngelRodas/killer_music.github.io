@@ -163,9 +163,7 @@
                 echo "</div>";
             }
         }
-    } else {
-        header("Location: musica.php");
-    }
+    } 
     ?>
 </body>
 <?php

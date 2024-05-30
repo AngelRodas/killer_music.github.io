@@ -202,9 +202,7 @@ font-size: 25px;
     left: 2px;
     transition: left 0.5s ease;
 }
-.barra-lateral .modo-oscuro .circulo.prendido{
-    left: 15px;
-}
+
 /*-----------------------------> usuario*/
 .barra-lateral .usuario{
   width: 100%;

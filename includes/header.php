@@ -46,7 +46,7 @@ setlocale(LC_MONETARY, 'es_gt');
                 echo    "--texto-o: #582c2b;";
                 echo  "}";
             } else if ($_SESSION["tema"] == "dark") {
-                echo " .dark-mode{";                
+                echo " :root{";                
                 echo "     --barra-lateral:#ffffff;";        
                 echo "     --texto1:#70477c ;";                
                 echo "     --texto: #ffffff;";                
@@ -58,7 +58,7 @@ setlocale(LC_MONETARY, 'es_gt');
                 echo "     --fondo3:#7a0991;";            
                 echo "     --fondo4:#3d124e;";                
                 echo "      --texto-o:#130022 ;";
-                echo " } ";
+                echo " } ";            
             }
         }
         ?>
@@ -176,22 +176,37 @@ setlocale(LC_MONETARY, 'es_gt');
                         }
                         ?>
                     </span>
-                </div>
+                </div>                
                 <a <?php
-                    if (isset($_SESSION["tema"])) {
+                    $keys ="";
+                    foreach($_GET as $key => $value){
+                        if($key != "action"){
+                            if($key != "tema"){
+                                $keys = $keys ."&". $key . "=" . $value;
+                            }
+                        }                         
+                    }
+                    if (isset($_SESSION["tema"])) {                        
                         if ($_SESSION["tema"] == "light") {
-                            echo "href='?action=CambiarTema&tema=dark'";
+                            
+                            echo "href='?action=CambiarTema&tema=dark".$keys."'>";                                                        
+                            echo "<div class='switch'>"; 
+                            echo "  <div class='base'>";
+                            echo "      <div class='circulo'>";
+                            echo "      </div>";
+                            echo "  </div>";
+                            echo "</div>";
                         } else if ($_SESSION["tema"] == "dark") {
-                            echo "href='?action=CambiarTema&tema=light'";
+                            echo "href='?action=CambiarTema&tema=light".$keys."'>";
+                            echo "<div class='switch'>"; 
+                            echo "  <div class='base'>";
+                            echo "      <div class='circulo' style='left:15px;'>";
+                            echo "      </div>";
+                            echo "  </div>";
+                            echo "</div>";
                         }
                     }
-                    ?>>
-                    <div class="switch">
-                        <div class="base">
-                            <div class="circulo">
-                            </div>
-                        </div>
-                    </div>
+                    ?>                    
                 </a>
             </div>
             <div class="usuario"><!--imagen de sesion -->

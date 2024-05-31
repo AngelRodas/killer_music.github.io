@@ -91,27 +91,13 @@ if (!isset($_SESSION['UsuarioID'])) {
                                             <i class="fas fa-arrow-left"></i>
                                         </div>
                                         <!-- Modal -->
-                                        <div id="myModal" class="modal">
-                                            <div class="modal-content">
-                                                <span class="close">&times;</span>
-                                                <p>¿Deseas eliminar el album canción?</p>
-                                                <button id="yesBtn">Sí</button>
-                                                <button id="noBtn">No</button>
-                                            </div>
-                                        </div>
+                                        
 
                                         <h5 class="player__title">Album</h5>
                                         <a class="player__btn player__btn--small">
                                             <i class="fas fa-bars"></i>
                                         </a>
-                                        <div class="player__menu hide" id="menu">
-                                            <ul>
-                                                <li>Canción 1</li>
-                                                <li>Canción 2</li>
-                                                <li>Canción 3</li>
-                                                <!-- Agrega más canciones aquí -->
-                                            </ul>
-                                        </div>
+                                        
                                     </div>
                                     <div class="player__album">
                                         <?php
